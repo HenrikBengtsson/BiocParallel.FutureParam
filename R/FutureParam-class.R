@@ -8,22 +8,18 @@
 
 #' @importFrom methods new setRefClass
 #' @importFrom BiocParallel bplogdir
-.FutureParam <- setRefClass("FutureParam",
-    contains="BiocParallelParam",
-    fields=list(
-        logdir="character"),
-    methods=list(
-        initialize = function(...,
-            threshold="INFO",
-            logdir=NA_character_)
-        {
-            callSuper(...)
-            initFields(threshold=threshold, logdir=logdir)
-        },
-        show = function() {
-            callSuper()
-            cat("  bplogdir: ", bplogdir(.self), "\n", sep="")
-        })
+.FutureParam <- setRefClass("FutureParam", contains="BiocParallelParam",
+  fields=list(logdir="character"),
+  methods=list(
+    initialize = function(..., threshold="INFO", logdir=NA_character_) {
+      callSuper(...)
+      initFields(threshold=threshold, logdir=logdir)
+    },
+    show = function() {
+      callSuper()
+      cat("  bplogdir: ", bplogdir(.self), "\n", sep="")
+    }
+  )
 )
 
 #' Creates a FutureParam object
@@ -39,17 +35,18 @@
 #' @export
 #' @importFrom methods validObject
 FutureParam <-
-    function(catch.errors=TRUE, stop.on.error = TRUE,
-             log=FALSE, threshold="INFO", logdir=NA_character_)
-{
-    if (!missing(catch.errors))
-        warning("'catch.errors' is deprecated, use 'stop.on.error'")
+  function(catch.errors=TRUE, stop.on.error = TRUE,
+           log=FALSE, threshold="INFO", logdir=NA_character_) {
+  if (!missing(catch.errors)) {
+    warning("'catch.errors' is deprecated, use 'stop.on.error'")
+  }
 
-    x <- .FutureParam(workers=1L, catch.errors=catch.errors,
-                      stop.on.error=stop.on.error,
-                      log=log, threshold=threshold, logdir=logdir)
-    validObject(x)
-    x
+  x <- .FutureParam(workers=1L, catch.errors=catch.errors,
+                    stop.on.error=stop.on.error,
+                    log=log, threshold=threshold, logdir=logdir)
+
+  validObject(x)
+  x
 }
 
 ### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -57,48 +54,47 @@ FutureParam <-
 ###
 
 #' @importFrom methods setMethod
-setMethod("bpworkers", "FutureParam", function(x) 1L)
+setMethod("bpworkers", "FutureParam", function(x) {
+  1L
+})
 
 #' @importFrom methods setMethod
-setMethod("bpisup", "FutureParam", function(x) TRUE)
+setMethod("bpisup", "FutureParam", function(x) {
+  TRUE
+})
 
 #' @importFrom methods setReplaceMethod validObject
-setReplaceMethod("bplog", c("FutureParam", "logical"),
-    function(x, value)
-{
-    x$log <- value
-    validObject(x)
-    x
+setReplaceMethod("bplog", c("FutureParam", "logical"), function(x, value) {
+  x$log <- value
+  validObject(x)
+  x
 })
 
 #' @importFrom methods setReplaceMethod
-setReplaceMethod("bpthreshold", c("FutureParam", "character"),
-    function(x, value)
-{
-    x$threshold <- value
-    x
+setReplaceMethod("bpthreshold", c("FutureParam", "character"), function(x, value) {
+  x$threshold <- value
+  x
 })
 
 #' @importFrom methods setMethod
-setMethod("bplogdir", "FutureParam",
-    function(x)
-{
-    x$logdir
+setMethod("bplogdir", "FutureParam", function(x) {
+  x$logdir
 })
 
 #' @importFrom methods setReplaceMethod
-setReplaceMethod("bplogdir", c("FutureParam", "character"),
-    function(x, value)
-{
-    .valid.SnowParam.log <- BiocParallel:::.valid.SnowParam.log
+setReplaceMethod("bplogdir", c("FutureParam", "character"), function(x, value) {
+  .valid.SnowParam.log <- importBP(".valid.SnowParam.log")
 
-    if (!length(value))
-        value <- NA_character_
-    x$logdir <- value
-    if (is.null(msg <- .valid.SnowParam.log(x)))
-        x
-    else
-        stop(msg)
+  if (!length(value)) {
+    value <- NA_character_
+  }
+
+  x$logdir <- value
+  if (is.null(msg <- .valid.SnowParam.log(x))) {
+    x
+  } else {
+    stop(msg)
+  }
 })
 
 ### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -107,92 +103,111 @@ setReplaceMethod("bplogdir", c("FutureParam", "character"),
 
 #' @importFrom methods setMethod
 #' @importFrom BiocParallel bplog bpok bpparam bpstopOnError bpthreshold bptimeout
-setMethod("bplapply", c("ANY", "FutureParam"),
-    function(X, FUN, ..., BPREDO=list(), BPPARAM=bpparam())
-{
-    .composeTry <- BiocParallel:::.composeTry
-    .error_bplist <- BiocParallel:::.error_bplist
-    .log_load <- BiocParallel:::.log_load
-    .redo_index <- BiocParallel:::.redo_index
+#' @importFrom future future resolve value
+setMethod("bplapply", c("ANY", "FutureParam"), function(X, FUN, ..., BPREDO=list(), BPPARAM=bpparam()) {
+  .composeTry <- importBP(".composeTry")
+  .error_bplist <- importBP(".error_bplist")
+  .log_load <- importBP(".log_load")
+  .redo_index <- importBP(".redo_index")
 
-    if (!length(X))
-        return(list())
+  if (!length(X)) return(list())
 
-    FUN <- match.fun(FUN)
+  FUN <- match.fun(FUN)
 
-    idx <- .redo_index(X, BPREDO)
-    if (any(idx))
-        X <- X[idx]
+  idx <- .redo_index(X, BPREDO)
+  if (any(idx)) {
+    X <- X[idx]
+  }
 
-    .log_load(bplog(BPPARAM), bpthreshold(BPPARAM))
+  .log_load(bplog(BPPARAM), bpthreshold(BPPARAM))
 
-    FUN <- .composeTry(FUN, bplog(BPPARAM), bpstopOnError(BPPARAM),
-                       stop.immediate=bpstopOnError(BPPARAM),
-                       timeout=bptimeout(BPPARAM))
+  FUN <- .composeTry(FUN, bplog(BPPARAM), bpstopOnError(BPPARAM),
+                     stop.immediate=bpstopOnError(BPPARAM),
+                     timeout=bptimeout(BPPARAM))
 
-    res <- lapply(X, FUN, ...)
+  ## Create futures
+  fs <- list()
+  for (kk in seq_along(X)) {
+    X_kk <- X[[kk]]
+    fs[[kk]] <- future(FUN(X_kk, ...))
+  }
+  names(fs) <- names(X)
 
-    names(res) <- names(X)
+  ## Resolve futures
+  fs <- resolve(fs)
 
-    if (any(idx)) {
-        BPREDO[idx] <- res
-        res <- BPREDO
-    }
+  ## Retrieve values
+  res <- lapply(fs, FUN=value, signal=FALSE)
 
-    if (!all(bpok(res)))
-        stop(.error_bplist(res))
+  if (any(idx)) {
+    BPREDO[idx] <- res
+    res <- BPREDO
+  }
 
-    res
+  if (!all(bpok(res))) {
+    stop(.error_bplist(res))
+  }
+
+  res
 })
 
-.bpiterate_serial <- function(ITER, FUN, ..., REDUCE, init)
-{
-    ITER <- match.fun(ITER)
-    FUN <- match.fun(FUN)
-    N_GROW <- 100L
-    n <- 0
-    result <- vector("list", n)
-    if (!missing(init)) result[[1]] <- init
-    i <- 0L
-    repeat {
-        if(is.null(dat <- ITER()))
-            break
-        else
-            value <- FUN(dat, ...)
+.bpiterate <- function(ITER, FUN, ..., REDUCE, init) {
+  ITER <- match.fun(ITER)
+  FUN <- match.fun(FUN)
 
-        if (missing(REDUCE)) {
-            i <- i + 1L
-            if (i > n) {
-                n <- n + N_GROW
-                length(result) <- n
-            }
-            result[[i]] <- value
-        } else {
-            if (length(result))
-                result[[1]] <- REDUCE(result[[1]], unlist(value))
-            else
-                result[[1]] <- value
-        }
+  N_GROW <- 100L
+  n <- 0
+  result <- vector("list", length=n)
+  if (!missing(init)) result[[1]] <- init
+
+  ii <- 0L
+  repeat {
+    if (is.null(dat <- ITER())) {
+      break
+    } else {
+      f <- future(FUN(dat, ...))
     }
-    length(result) <- ifelse(i == 0L, 1, i)
-    result
-}
+
+    if (missing(REDUCE)) {
+      ii <- ii + 1L
+      if (ii > n) {
+        n <- n + N_GROW
+        length(result) <- n
+      }
+      result[[ii]] <- value(f)
+    } else {
+      if (length(result)) {
+        result[[1]] <- REDUCE(result[[1]], unlist(value(f)))
+      } else {
+        result[[1]] <- value(f)
+      }
+    }
+  }
+
+  length(result) <- ifelse(ii == 0L, 1, ii)
+
+  result
+} ## .bpiterate()
+
 
 #' @importFrom methods setMethod
 #' @importFrom BiocParallel bplog bpparam bpthreshold
-setMethod("bpiterate", c("ANY", "ANY", "FutureParam"),
-    function(ITER, FUN, ..., BPPARAM=bpparam())
-{
-    ITER <- match.fun(ITER)
-    FUN <- match.fun(FUN)
+setMethod("bpiterate", c("ANY", "ANY", "FutureParam"), function(ITER, FUN, ..., BPPARAM=bpparam()) {
+  .composeTry <- importBP(".composeTry")
+  .log_load <- importBP(".log_load")
 
-    .composeTry <- BiocParallel:::.composeTry
-    .log_load <- BiocParallel:::.log_load
+  ITER <- match.fun(ITER)
+  FUN <- match.fun(FUN)
 
-    .log_load(bplog(BPPARAM), bpthreshold(BPPARAM))
+  .log_load(bplog(BPPARAM), bpthreshold(BPPARAM))
 
-    FUN <- .composeTry(FUN, bplog(BPPARAM), bpstopOnError(BPPARAM),
-                       timeout=bptimeout(BPPARAM))
+  FUN <- .composeTry(FUN, bplog(BPPARAM), bpstopOnError(BPPARAM),
+                     timeout=bptimeout(BPPARAM))
 
-    .bpiterate_serial(ITER, FUN, ...)
+  .bpiterate(ITER, FUN=FUN, ...)
 })
+
+importBP <- function(name, mode="function", inherits=FALSE) {
+  ns <- getNamespace("BiocParallel")
+  get(name, mode=mode, envir=ns, inherits=inherits)
+}
