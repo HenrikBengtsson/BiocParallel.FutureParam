@@ -1,0 +1,17 @@
+Package: BiocParallel.FutureParam
+Version: 0.0.0-9000
+Depends:
+    R (>= 3.3.0),
+    future (>= 0.13.0),
+    BiocParallel (>= 1.6.0)
+Imports:
+    methods
+Title: A BiocParallelParam class using Futures
+Authors@R: c(person("Henrik", "Bengtsson", role=c("aut", "cre", "cph"),
+                                          email = "henrikb@braju.com"))
+Description: A BiocParallelParam class using Futures.
+License: LGPL (>= 2.1)
+LazyLoad: TRUE
+URL: https://github.com/HenrikBengtsson/BiocParallel.FutureParam
+BugReports: https://github.com/HenrikBengtsson/BiocParallel.FutureParam/issues
+RoxygenNote: 5.0.1
