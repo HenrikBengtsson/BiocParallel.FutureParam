@@ -1,11 +1,3 @@
-### =========================================================================
-### FutureParam objects
-### -------------------------------------------------------------------------
-
-### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-### Constructor
-###
-
 #' @importFrom methods new setRefClass
 #' @importFrom BiocParallel bplogdir
 .FutureParam <- setRefClass("FutureParam", contains="BiocParallelParam",
@@ -54,8 +46,9 @@ FutureParam <-
 ###
 
 #' @importFrom methods setMethod
+#' @importFrom future nbrOfWorkers
 setMethod("bpworkers", "FutureParam", function(x) {
-  1L
+  nbrOfWorkers()
 })
 
 #' @importFrom methods setMethod
@@ -134,7 +127,7 @@ setMethod("bplapply", c("ANY", "FutureParam"), function(X, FUN, ..., BPREDO=list
   names(fs) <- names(X)
 
   ## Resolve futures
-  fs <- resolve(fs)
+  fs <- resolve(fs, value=TRUE)
 
   ## Retrieve values
   res <- lapply(fs, FUN=value, signal=FALSE)
