@@ -147,6 +147,7 @@ setMethod("bplapply", c("ANY", "FutureParam"), function(X, FUN, ..., BPREDO=list
 .bpiterate <- function(ITER, FUN, ..., REDUCE, init) {
   ITER <- match.fun(ITER)
   FUN <- match.fun(FUN)
+  hasREDUCE <- !missing(REDUCE)
 
   N_GROW <- 100L
   n <- 0
@@ -155,29 +156,34 @@ setMethod("bplapply", c("ANY", "FutureParam"), function(X, FUN, ..., BPREDO=list
 
   ii <- 0L
   repeat {
-    if (is.null(dat <- ITER())) {
-      break
-    } else {
-      f <- future(FUN(dat, ...))
-    }
+    ## Next chunk
+    dat <- ITER()
 
-    if (missing(REDUCE)) {
+    ## Nothing more to do?
+    if (is.null(dat)) break
+
+    ## Create future
+    f <- future(FUN(dat, ...))
+
+    v <- value(f)
+    if (hasREDUCE) {
+      if (length(result) == 0L) {
+        result[[1]] <- v
+      } else {
+        result[[1]] <- REDUCE(result[[1]], unlist(v))
+      }
+    } else {
       ii <- ii + 1L
+      ## Grow result list?
       if (ii > n) {
         n <- n + N_GROW
         length(result) <- n
       }
-      result[[ii]] <- value(f)
-    } else {
-      if (length(result)) {
-        result[[1]] <- REDUCE(result[[1]], unlist(value(f)))
-      } else {
-        result[[1]] <- value(f)
-      }
+      result[[ii]] <- v
     }
   }
 
-  length(result) <- ifelse(ii == 0L, 1, ii)
+  length(result) <- ifelse(ii == 0L, 1L, ii)
 
   result
 } ## .bpiterate()
