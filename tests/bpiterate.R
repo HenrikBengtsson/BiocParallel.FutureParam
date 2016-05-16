@@ -38,4 +38,3 @@ for (strategy in strategies) {
 message("*** bpiterate() w/ FutureParam ... DONE")
 
 options(oopts)
-

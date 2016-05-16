@@ -96,7 +96,7 @@ setReplaceMethod("bplogdir", c("FutureParam", "character"), function(x, value) {
 
 #' @importFrom methods setMethod
 #' @importFrom BiocParallel bplog bpok bpparam bpstopOnError bpthreshold bptimeout
-#' @importFrom future future resolve value
+#' @importFrom future future resolve values
 setMethod("bplapply", c("ANY", "FutureParam"), function(X, FUN, ..., BPREDO=list(), BPPARAM=bpparam()) {
   .composeTry <- importBP(".composeTry")
   .error_bplist <- importBP(".error_bplist")
@@ -130,7 +130,7 @@ setMethod("bplapply", c("ANY", "FutureParam"), function(X, FUN, ..., BPREDO=list
   fs <- resolve(fs, value=TRUE)
 
   ## Retrieve values
-  res <- lapply(fs, FUN=value, signal=FALSE)
+  res <- values(fs, signal=FALSE)
 
   if (any(idx)) {
     BPREDO[idx] <- res
@@ -144,67 +144,54 @@ setMethod("bplapply", c("ANY", "FutureParam"), function(X, FUN, ..., BPREDO=list
   res
 })
 
-.bpiterate <- function(ITER, FUN, ..., REDUCE, init) {
-  ITER <- match.fun(ITER)
-  FUN <- match.fun(FUN)
-  hasREDUCE <- !missing(REDUCE)
-
-  N_GROW <- 100L
-  n <- 0
-  result <- vector("list", length=n)
-  if (!missing(init)) result[[1]] <- init
-
-  ii <- 0L
-  repeat {
-    ## Next chunk
-    dat <- ITER()
-
-    ## Nothing more to do?
-    if (is.null(dat)) break
-
-    ## Create future
-    f <- future(FUN(dat, ...))
-
-    v <- value(f)
-    if (hasREDUCE) {
-      if (length(result) == 0L) {
-        result[[1]] <- v
-      } else {
-        result[[1]] <- REDUCE(result[[1]], unlist(v))
-      }
-    } else {
-      ii <- ii + 1L
-      ## Grow result list?
-      if (ii > n) {
-        n <- n + N_GROW
-        length(result) <- n
-      }
-      result[[ii]] <- v
-    }
-  }
-
-  length(result) <- ifelse(ii == 0L, 1L, ii)
-
-  result
-} ## .bpiterate()
 
 
 #' @importFrom methods setMethod
-#' @importFrom BiocParallel bplog bpparam bpthreshold
-setMethod("bpiterate", c("ANY", "ANY", "FutureParam"), function(ITER, FUN, ..., BPPARAM=bpparam()) {
+#' @importFrom BiocParallel bploop bplog bptimeout bpstopOnError
+#' @importFrom future future resolve values
+setMethod("bpiterate", c("ANY", "ANY", "FutureParam"), function(ITER, FUN, ..., REDUCE, init, reduce.in.order=FALSE, BPPARAM=bpparam()) {
   .composeTry <- importBP(".composeTry")
-  .log_load <- importBP(".log_load")
 
   ITER <- match.fun(ITER)
   FUN <- match.fun(FUN)
-
-  .log_load(bplog(BPPARAM), bpthreshold(BPPARAM))
+  hasREDUCE <- !missing(REDUCE)
+  if (!hasREDUCE) {
+    if (reduce.in.order) {
+      stop("Argument 'REDUCE' must be provided when 'reduce.in.order = TRUE'")
+    }
+    if (!missing(init)) {
+      stop("Argument 'REDUCE' must be provided when 'init' is given")
+    }
+  }
 
   FUN <- .composeTry(FUN, bplog(BPPARAM), bpstopOnError(BPPARAM),
                      timeout=bptimeout(BPPARAM))
+  ARGFUN <- function(value) c(list(value), list(...))
 
-  .bpiterate(ITER, FUN=FUN, ...)
+
+  ## Create futures
+  fs <- list()
+  ii <- 1L
+  repeat {
+    item <- ITER()
+    if (is.null(item)) break
+    fs[[ii]] <- future(FUN(item, ...))
+    ii <- ii + 1L
+  }
+
+  ## Resolve futures
+  fs <- resolve(fs, value=TRUE)
+
+  ## Retrieve values
+  res <- values(fs, signal=FALSE)
+
+  if (hasREDUCE) {
+    res <- Reduce(REDUCE, res)
+  }
+
+  res
 })
+
 
 importBP <- function(name, mode="function", inherits=FALSE) {
   ns <- getNamespace("BiocParallel")
