@@ -155,11 +155,13 @@ setMethod("bpiterate", c("ANY", "ANY", "FutureParam"), function(ITER, FUN, ..., 
   ITER <- match.fun(ITER)
   FUN <- match.fun(FUN)
   hasREDUCE <- !missing(REDUCE)
+  hasinit <- !missing(init)
+
   if (!hasREDUCE) {
     if (reduce.in.order) {
       stop("Argument 'REDUCE' must be provided when 'reduce.in.order = TRUE'")
     }
-    if (!missing(init)) {
+    if (hasinit) {
       stop("Argument 'REDUCE' must be provided when 'init' is given")
     }
   }
@@ -172,6 +174,12 @@ setMethod("bpiterate", c("ANY", "ANY", "FutureParam"), function(ITER, FUN, ..., 
   ## Create futures
   fs <- list()
   ii <- 1L
+
+  if (hasinit) {
+    fs[[ii]] <- init
+    ii <- ii + 1L
+  }
+
   repeat {
     item <- ITER()
     if (is.null(item)) break
@@ -185,7 +193,7 @@ setMethod("bpiterate", c("ANY", "ANY", "FutureParam"), function(ITER, FUN, ..., 
   ## Retrieve values
   res <- values(fs, signal=FALSE)
 
-  if (hasREDUCE) {
+  if (hasREDUCE && length(res) > 1) {
     res <- Reduce(REDUCE, res)
   }
 
