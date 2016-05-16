@@ -44,7 +44,7 @@ MulticoreParam, BatchJobsParam and DoParParam.
 
 <table style="width: 100%;">
 <tr>
-<th>doNnn usage</th><th>BiocParallel.FutureParam alternative</th>
+<th>BiocParallel usage</th><th>BiocParallel.FutureParam alternative</th>
 </tr>
 
 <tr style="vertical-align: center;">
@@ -162,6 +162,11 @@ source('http://callr.org/install#HenrikBengtsson/BiocParallel.FutureParam')
 ```
 
 ### Pre-release version
+To install the pre-release version that is available in branch `release/0.1.0`, use:
+```r
+source('http://callr.org/install#HenrikBengtsson/BiocParallel.FutureParam@release/0.1.0')
+```
+This will install the package from source.  
 
 
 
@@ -170,5 +175,5 @@ source('http://callr.org/install#HenrikBengtsson/BiocParallel.FutureParam')
 | Resource:     | GitHub        | Travis CI     | Appveyor         |
 | ------------- | ------------------- | ------------- | ---------------- |
 | _Platforms:_  | _Multiple_          | _Linux_       | _Windows_        |
-| R CMD check   |  |  |  |
-| Test coverage |                     |    |                  |
+| R CMD check   |  | <a href="https://travis-ci.org/HenrikBengtsson/BiocParallel.FutureParam"><img src="https://travis-ci.org/HenrikBengtsson/BiocParallel.FutureParam.svg" alt="Build status"></a> | <a href="https://ci.appveyor.com/project/HenrikBengtsson/biocparallel-futureparam"><img src="https://ci.appveyor.com/api/projects/status/github/HenrikBengtsson/BiocParallel.FutureParam?svg=true" alt="Build status"></a> |
+| Test coverage |                     | <a href="https://coveralls.io/r/HenrikBengtsson/BiocParallel.FutureParam"><img src="https://coveralls.io/repos/HenrikBengtsson/BiocParallel.FutureParam/badge.svg?branch=develop" alt="Coverage Status"/></a>   |                  |

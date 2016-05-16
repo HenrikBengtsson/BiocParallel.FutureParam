@@ -65,7 +65,7 @@ MulticoreParam, BatchJobsParam and DoParParam.
 
 <table style="width: 100%;">
 <tr>
-<th>doNnn usage</th><th>BiocParallel.FutureParam alternative</th>
+<th>BiocParallel usage</th><th>BiocParallel.FutureParam alternative</th>
 </tr>
 
 <tr style="vertical-align: center;">
