@@ -26,6 +26,7 @@ env:
 
   # R versions r-builder should test on (ignored by r-travis)
   matrix:
+    - RVERSION=release
     - RVERSION=devel _R_COVR_=TRUE _R_CHECK_FULL_=TRUE
 
 
@@ -48,10 +49,8 @@ before_install:
     fi
 
 install:
-  - $RENV install_deps
-  - $RENV install_bioc BiocParallel
-  - $RENV install_r markdown R.rsp
-  - $RENV install_github HenrikBengtsson/future@develop
+ - $RENV install_bioc BiocParallel
+ - $RENV install_r future markdown R.rsp
 
 script:
   - $RENV run_build
