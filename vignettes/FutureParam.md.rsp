@@ -1,4 +1,25 @@
-# BiocParallel.FutureParam: A BiocParallelParam class using Futures
+<%@meta language="R-vignette" content="--------------------------------
+%\VignetteIndexEntry{A BiocParallelParam class using Futures}
+%\VignetteAuthor{Henrik Bengtsson}
+%\VignetteKeyword{R}
+%\VignetteKeyword{package}
+%\VignetteKeyword{vignette}
+%\VignetteKeyword{BiocParallel}
+%\VignetteKeyword{BiocParallelParam}
+%\VignetteKeyword{future}
+%\VignetteKeyword{synchronous}
+%\VignetteKeyword{asynchronous}
+%\VignetteKeyword{parallel}
+%\VignetteKeyword{cluster}
+%\VignetteEngine{R.rsp::rsp}
+%\VignetteTangle{FALSE}
+--------------------------------------------------------------------"%>
+<%
+library("R.utils")
+options("withCapture/newline"=FALSE)
+options(mc.cores=2L)
+%>
+# A BiocParallelParam class using Futures
 
 ## Introduction
 The [future] package provides a generic API for using futures in R.
@@ -153,21 +174,5 @@ plan(batchjobs, backend="~/.BatchJobs.R")
 [BiocParallel.FutureParam]: https://github.com/HenrikBengtsson/BiocParallel.FutureParam
 [future]: https://cran.r-project.org/package=future
 [future.BatchJobs]: https://github.com/HenrikBengtsson/future.BatchJobs
-
-## Installation
-R package BiocParallel.FutureParam is only available via [GitHub](https://github.com/HenrikBengtsson/BiocParallel.FutureParam) and can be installed in R as:
-```r
-source('http://callr.org/install#HenrikBengtsson/BiocParallel.FutureParam')
-```
-
-### Pre-release version
-
-
-
-## Software status
-
-| Resource:     | GitHub        | Travis CI     | Appveyor         |
-| ------------- | ------------------- | ------------- | ---------------- |
-| _Platforms:_  | _Multiple_          | _Linux_       | _Windows_        |
-| R CMD check   |  |  |  |
-| Test coverage |                     |    |                  |
+---
+Copyright Henrik Bengtsson, 2016

@@ -24,11 +24,11 @@
 #'
 #' @return A \link[BiocParallel:BiocParallelParam]{BiocParallelParam} object of class FutureParam
 #'
+#' @example incl/BiocParallel.FutureParam.R
+#'
 #' @export
 #' @importFrom methods validObject
-FutureParam <-
-  function(catch.errors=TRUE, stop.on.error = TRUE,
-           log=FALSE, threshold="INFO", logdir=NA_character_) {
+FutureParam <- function(catch.errors=TRUE, stop.on.error = TRUE, log=FALSE, threshold="INFO", logdir=NA_character_) {
   if (!missing(catch.errors)) {
     warning("'catch.errors' is deprecated, use 'stop.on.error'")
   }
@@ -38,6 +38,7 @@ FutureParam <-
                     log=log, threshold=threshold, logdir=logdir)
 
   validObject(x)
+
   x
 }
 
