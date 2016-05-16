@@ -142,7 +142,7 @@ register(SnowParam(4, "MPI"))
 <td>
 <pre><code class="r">library("BiocParallel.FutureParam")
 register(FutureParam())
-cl <- makeCluster(4, type="MPI")
+cl <- parallel::makeCluster(4, type="MPI")
 plan(cluster, workers=cl)
 </code></pre>
 </td>
@@ -152,6 +152,7 @@ plan(cluster, workers=cl)
 <tr style="vertical-align: center;">
 <td>
 <pre><code class="r">library("BiocParallel")
+library("BatchJobs")
 funs <- makeClusterFunctionsSLURM("~/slurm.tmpl")
 register(BatchJobsParam(4, cluster.functions=funs))
 
