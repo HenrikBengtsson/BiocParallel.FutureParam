@@ -51,6 +51,7 @@ install:
   - $RENV install_deps
   - $RENV install_bioc BiocParallel
   - $RENV install_r markdown R.rsp
+  - $RENV install_github HenrikBengtsson/future@develop
 
 script:
   - $RENV run_build

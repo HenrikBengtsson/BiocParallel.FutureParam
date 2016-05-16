@@ -39,6 +39,7 @@ build_script:
   - echo Current directory=%CD%
   - travis-tool.sh install_bioc BiocParallel
   - travis-tool.sh install_r future markdown R.rsp
+  - travis-tool.sh install_github HenrikBengtsson/future@develop
 
 test_script:
   - travis-tool.sh run_tests
