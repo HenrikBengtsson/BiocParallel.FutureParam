@@ -140,8 +140,8 @@ register(BatchJobsParam(4, cluster.functions=funs))
 <td>
 <pre><code class="r">library("BiocParallel.FutureParam")
 register(FutureParam())
-library(future.BatchJobs)
-plan(batchjobs, backend="~/.BatchJobs.R")
+library("future.BatchJobs")
+plan(batchjobs_slurm, pathname="~/slurm.tmpl")
 </code></pre>
 </td>
 </tr>
@@ -153,7 +153,7 @@ plan(batchjobs, backend="~/.BatchJobs.R")
 [BiocParallel]: https://bioconductor.org/packages/release/bioc/html/BiocParallel.html
 [BiocParallel.FutureParam]: https://github.com/HenrikBengtsson/BiocParallel.FutureParam
 [future]: https://cran.r-project.org/package=future
-[future.BatchJobs]: https://github.com/HenrikBengtsson/future.BatchJobs
+[future.BatchJobs]: https://cran.r-project.org/package=future.BatchJobs
 
 ## Installation
 R package BiocParallel.FutureParam is only available via [GitHub](https://github.com/HenrikBengtsson/BiocParallel.FutureParam) and can be installed in R as:
@@ -162,9 +162,10 @@ source('http://callr.org/install#HenrikBengtsson/BiocParallel.FutureParam')
 ```
 
 ### Pre-release version
-To install the pre-release version that is available in branch `release/0.1.0`, use:
+
+To install the pre-release version that is available in branch `develop`, use:
 ```r
-source('http://callr.org/install#HenrikBengtsson/BiocParallel.FutureParam@release/0.1.0')
+source('http://callr.org/install#HenrikBengtsson/BiocParallel.FutureParam@develop')
 ```
 This will install the package from source.  
 
@@ -172,8 +173,8 @@ This will install the package from source.
 
 ## Software status
 
-| Resource:     | GitHub        | Travis CI     | Appveyor         |
-| ------------- | ------------------- | ------------- | ---------------- |
-| _Platforms:_  | _Multiple_          | _Linux_       | _Windows_        |
-| R CMD check   |  | <a href="https://travis-ci.org/HenrikBengtsson/BiocParallel.FutureParam"><img src="https://travis-ci.org/HenrikBengtsson/BiocParallel.FutureParam.svg" alt="Build status"></a> | <a href="https://ci.appveyor.com/project/HenrikBengtsson/biocparallel-futureparam"><img src="https://ci.appveyor.com/api/projects/status/github/HenrikBengtsson/BiocParallel.FutureParam?svg=true" alt="Build status"></a> |
-| Test coverage |                     | <a href="https://coveralls.io/r/HenrikBengtsson/BiocParallel.FutureParam"><img src="https://coveralls.io/repos/HenrikBengtsson/BiocParallel.FutureParam/badge.svg?branch=develop" alt="Coverage Status"/></a>   |                  |
+| Resource:     | GitHub        | Travis CI      | Appveyor         |
+| ------------- | ------------------- | -------------- | ---------------- |
+| _Platforms:_  | _Multiple_          | _Linux & OS X_ | _Windows_        |
+| R CMD check   |  | <a href="https://travis-ci.org/HenrikBengtsson/BiocParallel.FutureParam"><img src="https://travis-ci.org/HenrikBengtsson/BiocParallel.FutureParam.svg" alt="Build status"></a>  | <a href="https://ci.appveyor.com/project/HenrikBengtsson/biocparallel-futureparam"><img src="https://ci.appveyor.com/api/projects/status/github/HenrikBengtsson/BiocParallel.FutureParam?svg=true" alt="Build status"></a> |
+| Test coverage |                     | <a href="https://codecov.io/gh/HenrikBengtsson/BiocParallel.FutureParam"><img src="https://codecov.io/gh/HenrikBengtsson/BiocParallel.FutureParam/branch/develop/graph/badge.svg" alt="Coverage Status"/></a>    |                  |
