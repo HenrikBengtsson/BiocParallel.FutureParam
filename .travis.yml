@@ -14,8 +14,8 @@ r_check_args: --as-cran
 
 matrix:
   include:
-    - os: linux
-      r: oldrel
+#    - os: linux
+#      r: oldrel
     - os: linux
       r: release
       r_github_packages:
@@ -25,8 +25,8 @@ matrix:
       env: NB='w/ covr' ## Just a label
     - os: linux
       r: devel
-    - os: osx
-      r: oldrel
+#    - os: osx
+#      r: oldrel
     - os: osx
       r: release
 
