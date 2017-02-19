@@ -39,4 +39,3 @@ x <- bplapply(1:3, mu=mu, sigma=sigma, function(i, mu, sigma) {
 })
 print(x)
 }
-
