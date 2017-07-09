@@ -1,6 +1,6 @@
 library("BiocParallel.FutureParam")
 register(FutureParam())
-plan(lazy)
+plan(multiprocess)
 
 mu <- 1.0
 sigma <- 2.0

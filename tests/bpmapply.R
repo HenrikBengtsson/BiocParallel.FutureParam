@@ -4,7 +4,7 @@ strategies <- future:::supportedStrategies()
 strategies <- setdiff(strategies, "multiprocess")
 
 register(FutureParam())
-plan(lazy)
+plan(sequential)
 
 message("*** bpmapply() w/ FutureParam ...")
 

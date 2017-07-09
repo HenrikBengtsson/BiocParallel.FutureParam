@@ -78,7 +78,7 @@ register(SerialParam())
 <td>
 <pre><code class="r">library("BiocParallel.FutureParam")
 register(FutureParam())
-plan(eager)
+plan(sequential)
 </code></pre>
 </td>
 </tr>
