@@ -1,5 +1,5 @@
-library("BiocParallel.FutureParam")
-oopts <- options(mc.cores=2L, warn=1L)
+source("incl/start.R")
+
 strategies <- future:::supportedStrategies()
 strategies <- setdiff(strategies, "multiprocess")
 
@@ -37,4 +37,5 @@ for (strategy in strategies) {
 
 message("*** bpiterate() w/ FutureParam ... DONE")
 
-options(oopts)
+source("incl/end.R")
+
