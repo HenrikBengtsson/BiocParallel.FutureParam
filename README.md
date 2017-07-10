@@ -150,7 +150,7 @@ plan(batchjobs_slurm, pathname = "~/slurm.tmpl")
 
 <tr style="vertical-align: center;">
 <td>
-There exist no BiocParallelParam for [batchtools] in BiocParallel.
+There exist no BiocParallelParam for batchtools in BiocParallel.
 </td>
 <td>
 <pre><code class="r">library("BiocParallel.FutureParam")
