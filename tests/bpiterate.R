@@ -1,10 +1,5 @@
 source("incl/start.R")
-
-strategies <- future:::supportedStrategies()
-strategies <- setdiff(strategies, "multiprocess")
-
-register(FutureParam())
-plan(sequential)
+strategies <- all_strategies(excl = "multiprocess")
 
 message("*** bpiterate() w/ FutureParam ...")
 
@@ -27,9 +22,9 @@ for (strategy in strategies) {
 
   message("  - sqrt()")
   max <- 5L
-  expected <- lapply(1:max, FUN=sqrt)
+  expected <- lapply(1:max, FUN = sqrt)
   ITER <- countIterator(max)
-  current <- bpiterate(ITER, FUN=sqrt)
+  current <- bpiterate(ITER, FUN = sqrt)
   stopifnot(identical(expected, current))
 
   message(sprintf("- plan('%s') ... DONE", strategy))

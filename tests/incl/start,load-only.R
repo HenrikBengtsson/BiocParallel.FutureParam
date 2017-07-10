@@ -7,15 +7,33 @@ oplan <- future::plan()
 ## Use sequential futures by default
 future::plan(sequential)
 
+## Use FutureParam with BiocParallel by default
+BiocParallel::register(BiocParallel.FutureParam::FutureParam())
+
+## To please R CMD check when using require().
+future.batchtools <- "future.batchtools"  #nolint
+future.BatchJobs <- "future.BatchJobs"    #nolint
+
 fullTest <- (Sys.getenv("_R_CHECK_FULL_") != "")
 
-all_strategies <- function() {
+all_strategies <- function(excl = NULL) {
   strategies <- Sys.getenv("R_FUTURE_TESTS_STRATEGIES")
   strategies <- unlist(strsplit(strategies, split = ","))
   strategies <- gsub(" ", "", strategies)
   strategies <- strategies[nzchar(strategies)]
-  strategies <- c(future:::supportedStrategies(), strategies)
-  unique(strategies)
+  
+  builtin <- future:::supportedStrategies()
+  if (require(future.BatchJobs, character.only = TRUE)) {
+    builtin <- c(builtin, "batchjobs_local", "batchjobs_interactive")
+  }
+  if (require(future.batchtools, character.only = TRUE)) {
+    builtin <- c(builtin, "batchtools_local", "batchtools_interactive")
+  }
+  
+  strategies <- c(builtin, strategies)
+  strategies <- unique(strategies)
+  strategies <- setdiff(strategies, excl)
+  strategies
 }
 
 test_strategy <- function(strategy) {

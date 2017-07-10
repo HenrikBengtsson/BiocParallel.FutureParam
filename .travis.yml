@@ -12,27 +12,31 @@ sudo: false
 cache: packages
 r_check_args: --as-cran
 
+r_packages:
+  - future.BatchJobs
+  - future.batchtools
+
+bioc_packages:
+  - BiocInstaller
+  - BiocParallel
+
 matrix:
   include:
-#    - os: linux
-#      r: oldrel
+    - os: linux
+      r: oldrel
     - os: linux
       r: release
       r_github_packages:
       - jimhester/covr
       after_success:
-      - Rscript -e 'covr::codecov(quiet=FALSE)'
+      - Rscript -e 'covr::codecov(quiet = FALSE)'
       env: NB='w/ covr' ## Just a label
     - os: linux
       r: devel
-#    - os: osx
-#      r: oldrel
+    - os: osx
+      r: oldrel
     - os: osx
       r: release
-
-bioc_packages:
-  - BiocInstaller
-  - BiocParallel
 
 notifications:
   email:

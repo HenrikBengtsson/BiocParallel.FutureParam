@@ -1,16 +1,11 @@
 source("incl/start.R")
-
-strategies <- future:::supportedStrategies()
-strategies <- setdiff(strategies, "multiprocess")
-
-register(FutureParam())
-plan(sequential)
+strategies <- all_strategies(excl = "multiprocess")
 
 message("*** bpvec() w/ FutureParam ...")
 
 ## Serial version of pvec()
 svec <- function(...) {
-  parallel::pvec(..., mc.cores=1L)
+  parallel::pvec(..., mc.cores = 1L)
 }
 
 
@@ -20,8 +15,8 @@ for (strategy in strategies) {
 
   message("  - sqrt()")
   a <- 1:10
-  expected <- svec(a, FUN=sqrt)
-  current <- bpvec(a, FUN=sqrt)
+  expected <- svec(a, FUN = sqrt)
+  current <- bpvec(a, FUN = sqrt)
   stopifnot(identical(expected, current))
 
   message(sprintf("- plan('%s') ... DONE", strategy))
