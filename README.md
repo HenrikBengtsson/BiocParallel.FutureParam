@@ -29,8 +29,8 @@ plan(multiprocess)
 
 mu <- 1.0
 sigma <- 2.0
-x <- bplapply(1:3, mu=mu, sigma=sigma, function(i, mu, sigma) {
-  rnorm(i, mean=mu, sd=sigma)
+x <- bplapply(1:3, mu = mu, sigma = sigma, function(i, mu, sigma) {
+  rnorm(i, mean = mu, sd = sigma)
 })
 ```
 
@@ -80,14 +80,14 @@ plan(multicore)
 <tr style="vertical-align: center;">
 <td>
 <pre><code class="r">library("BiocParallel")
-register(SnowParam(2, "SOCK"))
+register(SnowParam(2, type = "SOCK"))
 
 </code></pre>
 </td>
 <td>
 <pre><code class="r">library("BiocParallel.FutureParam")
 register(FutureParam())
-plan(multisession, workers=2)
+plan(multisession, workers = 2)
 </code></pre>
 </td>
 </tr>
@@ -95,7 +95,7 @@ plan(multisession, workers=2)
 <tr style="vertical-align: center;">
 <td>
 <pre><code class="r">library("BiocParallel")
-cl <- parallel::makeCluster(2, "SOCK")
+cl <- parallel::makeCluster(2, type = "SOCK")
 register(as(cl, "SnowParam"))
 
 </code></pre>
@@ -103,8 +103,8 @@ register(as(cl, "SnowParam"))
 <td>
 <pre><code class="r">library("BiocParallel.FutureParam")
 register(FutureParam())
-cl <- parallel::makeCluster(2, "SOCK")
-plan(cluster, workers=cl)
+cl <- parallel::makeCluster(2, type = "SOCK")
+plan(cluster, workers = cl)
 </code></pre>
 </td>
 </tr>
@@ -113,7 +113,7 @@ plan(cluster, workers=cl)
 <tr style="vertical-align: center;">
 <td>
 <pre><code class="r">library("BiocParallel")
-register(SnowParam(4, "MPI"))
+register(SnowParam(4, type = "MPI"))
 
 
 </code></pre>
@@ -121,8 +121,8 @@ register(SnowParam(4, "MPI"))
 <td>
 <pre><code class="r">library("BiocParallel.FutureParam")
 register(FutureParam())
-cl <- parallel::makeCluster(4, type="MPI")
-plan(cluster, workers=cl)
+cl <- parallel::makeCluster(4, type = "MPI")
+plan(cluster, workers = cl)
 </code></pre>
 </td>
 </tr>
@@ -133,7 +133,7 @@ plan(cluster, workers=cl)
 <pre><code class="r">library("BiocParallel")
 library("BatchJobs")
 funs <- makeClusterFunctionsSLURM("~/slurm.tmpl")
-register(BatchJobsParam(4, cluster.functions=funs))
+register(BatchJobsParam(4, cluster.functions = funs))
 
 </code></pre>
 </td>
@@ -141,7 +141,7 @@ register(BatchJobsParam(4, cluster.functions=funs))
 <pre><code class="r">library("BiocParallel.FutureParam")
 register(FutureParam())
 library("future.BatchJobs")
-plan(batchjobs_slurm, pathname="~/slurm.tmpl")
+plan(batchjobs_slurm, pathname = "~/slurm.tmpl")
 </code></pre>
 </td>
 </tr>
