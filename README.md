@@ -1,4 +1,4 @@
-# BiocParallel.FutureParam: A BiocParallelParam class using Futures
+# BiocParallel.FutureParam: A BiocParallelParam Class for Futures
 
 ## Introduction
 The [future] package provides a generic API for using futures in R.
@@ -8,8 +8,8 @@ in many different ways depending on which strategy is used.
 There are various types of synchronous and asynchronous futures to
 choose from in the [future] package.
 Additional futures are implemented in other packages.
-For instance, the [future.BatchJobs] package provides futures for
-_any_ type of backend that the [BatchJobs] package supports.
+For instance, the [future.batchtools] package provides futures for
+_any_ type of backend that the [batchtools] package supports.
 For an introduction to futures in R, please consult the
 vignettes of the [future] package.
 
@@ -40,7 +40,9 @@ x <- bplapply(1:3, mu = mu, sigma = sigma, function(i, mu, sigma) {
 Due to the generic nature of futures, the FutureParam class
 provides the same functionality as many of the existing
 BiocParallelParam classes, e.g. SerialParam, SnowParam,
-MulticoreParam, BatchJobsParam and DoParParam.
+MulticoreParam, BatchJobsParam and DoParParam.  In addition,
+it provides supports for additional backends that are not yet
+implemented in [BiocParallel], e.g. batchtools.
 
 <table style="width: 100%;">
 <tr>
@@ -134,7 +136,6 @@ plan(cluster, workers = cl)
 library("BatchJobs")
 funs <- makeClusterFunctionsSLURM("~/slurm.tmpl")
 register(BatchJobsParam(4, cluster.functions = funs))
-
 </code></pre>
 </td>
 <td>
@@ -146,14 +147,30 @@ plan(batchjobs_slurm, pathname = "~/slurm.tmpl")
 </td>
 </tr>
 
+
+<tr style="vertical-align: center;">
+<td>
+There exist no BiocParallelParam for [batchtools] in BiocParallel.
+</td>
+<td>
+<pre><code class="r">library("BiocParallel.FutureParam")
+register(FutureParam())
+library("future.batchtools")
+plan(batchtools_sge, template = "~/sge.tmpl")
+</code></pre>
+</td>
+</tr>
+
 <table>
 
 
 [BatchJobs]: https://cran.r-project.org/package=BatchJobs
+[batchtools]: https://cran.r-project.org/package=batchtools
 [BiocParallel]: https://bioconductor.org/packages/release/bioc/html/BiocParallel.html
 [BiocParallel.FutureParam]: https://github.com/HenrikBengtsson/BiocParallel.FutureParam
 [future]: https://cran.r-project.org/package=future
 [future.BatchJobs]: https://cran.r-project.org/package=future.BatchJobs
+[future.batchtools]: https://cran.r-project.org/package=future.batchtools
 
 ## Installation
 R package BiocParallel.FutureParam is only available via [GitHub](https://github.com/HenrikBengtsson/BiocParallel.FutureParam) and can be installed in R as:
