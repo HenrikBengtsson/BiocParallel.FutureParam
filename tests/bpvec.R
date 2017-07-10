@@ -1,16 +1,11 @@
-library("BiocParallel.FutureParam")
-oopts <- options(mc.cores=2L, warn=1L)
-strategies <- future:::supportedStrategies()
-strategies <- setdiff(strategies, "multiprocess")
-
-register(FutureParam())
-plan(lazy)
+source("incl/start.R")
+strategies <- all_strategies(excl = "multiprocess")
 
 message("*** bpvec() w/ FutureParam ...")
 
 ## Serial version of pvec()
 svec <- function(...) {
-  parallel::pvec(..., mc.cores=1L)
+  parallel::pvec(..., mc.cores = 1L)
 }
 
 
@@ -20,8 +15,8 @@ for (strategy in strategies) {
 
   message("  - sqrt()")
   a <- 1:10
-  expected <- svec(a, FUN=sqrt)
-  current <- bpvec(a, FUN=sqrt)
+  expected <- svec(a, FUN = sqrt)
+  current <- bpvec(a, FUN = sqrt)
   stopifnot(identical(expected, current))
 
   message(sprintf("- plan('%s') ... DONE", strategy))
@@ -29,5 +24,4 @@ for (strategy in strategies) {
 
 message("*** bpvec() w/ FutureParam ... DONE")
 
-options(oopts)
-
+source("incl/end.R")

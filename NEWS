@@ -1,5 +1,18 @@
 Package: BiocParallel.FutureParam
 =================================
 
+Version: 0.1.1 [2017-07-09]
+
+SOFTWARE QUALITY:
+
+ o TESTS: Now testing FutureParam with all built-in strategies of the future
+   package as well as the 'local' and 'interactive' strategies of
+   future.batchtools and future.BatchJobs.  In order to test with the latter
+   two, those packages need to be installed.
+ 
+
 Version: 0.1.0 [2016-05-15]
-o Package created.
+
+NEW FEATURES:
+
+ o Package created.
