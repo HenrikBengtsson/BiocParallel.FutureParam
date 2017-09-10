@@ -2,7 +2,7 @@ Package: BiocParallel.FutureParam
 Version: 0.1.1-9000
 Depends:
     R (>= 3.3.0),
-    future (>= 1.6.0),
+    future (>= 1.6.1),
     BiocParallel (>= 1.6.0)
 Imports:
     methods
@@ -14,7 +14,7 @@ VignetteBuilder:
 Title: A BiocParallelParam Class for Futures
 Authors@R: c(person("Henrik", "Bengtsson", role=c("aut", "cre", "cph"),
                                           email = "henrikb@braju.com"))
-Description: A BiocParallelParam class using Futures.
+Description: A 'BiocParallelParam' class using Futures that can be used with the BiocParallel framework.
 License: LGPL (>= 2.1)
 LazyLoad: TRUE
 URL: https://github.com/HenrikBengtsson/BiocParallel.FutureParam
