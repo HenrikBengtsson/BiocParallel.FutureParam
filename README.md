@@ -42,7 +42,7 @@ provides the same functionality as many of the existing
 BiocParallelParam classes, e.g. SerialParam, SnowParam,
 MulticoreParam, BatchJobsParam and DoParParam.  In addition,
 it provides supports for additional backends that are not yet
-implemented in [BiocParallel], e.g. batchtools and callr.
+implemented in [BiocParallel], e.g. [batchtools] and [callr].
 
 <table style="width: 100%;">
 <tr>
@@ -141,26 +141,28 @@ register(BatchJobsParam(4, cluster.functions = funs))
 <td>
 <pre><code class="r">library("BiocParallel.FutureParam")
 register(FutureParam())
-plan(future.BatchJobs::batchjobs_slurm, pathname = "~/slurm.tmpl")
+plan(future.BatchJobs::batchjobs_slurm,
+     pathname = "~/slurm.tmpl")
 </code></pre>
 </td>
 </tr>
 
 <tr style="vertical-align: center;">
 <td>
-There is no [batchtools] BiocParallelParam in BiocParallel
+There is no 'batchtools' BiocParallelParam in BiocParallel
 </td>
 <td>
 <pre><code class="r">library("BiocParallel.FutureParam")
 register(FutureParam())
-plan(future.batchtools::batchtools_sge, template = "~/sge.tmpl")
+plan(future.batchtools::batchtools_sge,
+     template = "~/sge.tmpl")
 </code></pre>
 </td>
 </tr>
 
 <tr style="vertical-align: center;">
 <td>
-There is no [callr] BiocParallelParam in BiocParallel
+There is no 'callr' BiocParallelParam in BiocParallel
 </td>
 <td>
 <pre><code class="r">library("BiocParallel.FutureParam")
