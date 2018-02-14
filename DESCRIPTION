@@ -2,7 +2,7 @@ Package: BiocParallel.FutureParam
 Version: 0.1.1-9000
 Depends:
     R (>= 3.3.0),
-    future (>= 1.6.1),
+    future (>= 1.7.0),
     BiocParallel (>= 1.6.0)
 Imports:
     methods
