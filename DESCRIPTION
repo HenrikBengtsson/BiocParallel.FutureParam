@@ -19,4 +19,4 @@ License: LGPL (>= 2.1)
 LazyLoad: TRUE
 URL: https://github.com/HenrikBengtsson/BiocParallel.FutureParam
 BugReports: https://github.com/HenrikBengtsson/BiocParallel.FutureParam/issues
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1

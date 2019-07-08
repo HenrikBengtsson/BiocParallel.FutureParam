@@ -21,6 +21,7 @@
 #' @param log ...
 #' @param threshold ...
 #' @param logdir ...
+#' @param ... ...
 #'
 #' @return A \link[BiocParallel:BiocParallelParam]{BiocParallelParam} object of class FutureParam
 #'
@@ -28,13 +29,20 @@
 #'
 #' @export
 #' @importFrom methods validObject
-FutureParam <- function(catch.errors=TRUE, stop.on.error = TRUE, log=FALSE, threshold="INFO", logdir=NA_character_) {
+#' @importFrom BiocParallel .prototype_update .BiocParallelParam_prototype
+FutureParam <- function(catch.errors=TRUE, stop.on.error = TRUE, log=FALSE, threshold="INFO", logdir=NA_character_, ...) {
   if (!missing(catch.errors)) {
     warning("'catch.errors' is deprecated, use 'stop.on.error'")
   }
 
-  x <- .FutureParam(workers=1L, stop.on.error=stop.on.error,
-                    log=log, threshold=threshold, logdir=logdir)
+  prototype <- .prototype_update(
+      .BiocParallelParam_prototype,
+      workers=1L, stop.on.error=stop.on.error,
+      log=log, threshold=threshold, logdir=logdir,
+      ...
+  )
+
+  x <- do.call(.FutureParam, prototype)
 
   validObject(x)
 
