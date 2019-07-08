@@ -33,8 +33,7 @@ FutureParam <- function(catch.errors=TRUE, stop.on.error = TRUE, log=FALSE, thre
     warning("'catch.errors' is deprecated, use 'stop.on.error'")
   }
 
-  x <- .FutureParam(workers=1L, catch.errors=catch.errors,
-                    stop.on.error=stop.on.error,
+  x <- .FutureParam(workers=1L, stop.on.error=stop.on.error,
                     log=log, threshold=threshold, logdir=logdir)
 
   validObject(x)
