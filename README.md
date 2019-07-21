@@ -135,7 +135,7 @@ plan(cluster, workers = cl)
 <pre><code class="r">library("BiocParallel")
 library("BatchJobs")
 funs <- makeClusterFunctionsSLURM("~/slurm.tmpl")
-register(BatchJobsParam(4, cluster.functions = funs))
+register(BatchJobsParam(cluster.functions = funs))
 </code></pre>
 </td>
 <td>
@@ -149,7 +149,10 @@ plan(future.BatchJobs::batchjobs_slurm,
 
 <tr style="vertical-align: center;">
 <td>
-There is no 'batchtools' BiocParallelParam in BiocParallel
+<pre><code class="r">library("BiocParallel")
+register(BatchtoolsParam(cluster="sge",
+                         template="~/sge.tmpl"))
+</code></pre>
 </td>
 <td>
 <pre><code class="r">library("BiocParallel.FutureParam")
@@ -162,7 +165,7 @@ plan(future.batchtools::batchtools_sge,
 
 <tr style="vertical-align: center;">
 <td>
-There is no 'callr' BiocParallelParam in BiocParallel
+N/A
 </td>
 <td>
 <pre><code class="r">library("BiocParallel.FutureParam")
@@ -193,9 +196,9 @@ remotes::install_github("HenrikBengtsson/BiocParallel.FutureParam")
 
 ### Pre-release version
 
-To install the pre-release version that is available in Git branch `feature/fix-Bioc_3.9` on GitHub, use:
+To install the pre-release version that is available in Git branch `develop` on GitHub, use:
 ```r
-remotes::install_github("HenrikBengtsson/BiocParallel.FutureParam@feature/fix-Bioc_3.9")
+remotes::install_github("HenrikBengtsson/BiocParallel.FutureParam@develop")
 ```
 This will install the package from source.  
 
