@@ -1,5 +1,5 @@
 Package: BiocParallel.FutureParam
-Version: 0.2.0
+Version: 0.2.0-9000
 Depends:
     R (>= 3.3.0),
     future (>= 1.14.0),
