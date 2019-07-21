@@ -4,19 +4,18 @@
 \alias{FutureParam}
 \title{Creates a FutureParam object}
 \usage{
-FutureParam(stop.on.error = TRUE, log = FALSE, threshold = "INFO",
-  logdir = NA_character_, ...)
+FutureParam(log = FALSE, threshold = "INFO", logdir = NA_character_,
+  ...)
 }
 \arguments{
-\item{stop.on.error}{...}
-
 \item{log}{...}
 
 \item{threshold}{...}
 
 \item{logdir}{...}
 
-\item{\ldots}{...}
+\item{\ldots}{Arguments passed to the initialization method of
+\link[BiocParallel:BiocParallelParam]{BiocParallel::BiocParallelParam}.}
 }
 \value{
 A \link[BiocParallel:BiocParallelParam]{BiocParallel::BiocParallelParam} object of class FutureParam.

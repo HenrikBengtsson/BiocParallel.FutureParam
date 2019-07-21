@@ -16,11 +16,11 @@
 
 #' Creates a FutureParam object
 #'
-#' @param stop.on.error ...
 #' @param log ...
 #' @param threshold ...
 #' @param logdir ...
-#' @param \ldots ...
+#' @param \ldots Arguments passed to the initialization method of
+#'   [BiocParallel::BiocParallelParam].
 #'
 #' @return A [BiocParallel::BiocParallelParam] object of class FutureParam.
 #'
@@ -33,11 +33,11 @@
 #'   importFrom(BiocParallel,.prototype_update)
 #'   importFrom(BiocParallel,.BiocParallelParam_prototype)
 #' }
-FutureParam <- function(stop.on.error = TRUE, log=FALSE, threshold="INFO", logdir=NA_character_, ...) {
+FutureParam <- function(log=FALSE, threshold="INFO", logdir=NA_character_, ...) {
   if (getRversion() >= "3.6.0") {
     prototype <- .prototype_update(
       .BiocParallelParam_prototype,
-      workers=1L, stop.on.error=stop.on.error,
+      workers=1L,
       log=log, threshold=threshold, logdir=logdir,
       ...
     )
@@ -46,7 +46,6 @@ FutureParam <- function(stop.on.error = TRUE, log=FALSE, threshold="INFO", logdi
     .prototype_update <- NULL
     .BiocParallelParam_prototype <- NULL
     prototype <- list(workers=1L,
-                      stop.on.error=stop.on.error,
                       log=log, threshold=threshold, logdir=logdir,
 		      ...)
     names <- names(prototype)
