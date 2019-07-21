@@ -4,20 +4,23 @@
 # Validator: https://ci.appveyor.com/tools/validate-yaml
 #----------------------------------------------------------------
 environment:
-  _R_CHECK_FORCE_SUGGESTS_: false
+  global:
+    USE_RTOOLS: true
+    _R_CHECK_FORCE_SUGGESTS_: false
+
 
   matrix:
   - R_VERSION: devel
     R_ARCH: x64
-    GCC_PATH: mingw_64
+    BIOC_USE_DEVEL: TRUE
       
   - R_VERSION: devel
     R_ARCH: i386
-    GCC_PATH: mingw_32
+    BIOC_USE_DEVEL: TRUE
 
   - R_VERSION: release
     R_ARCH: x64
-    GCC_PATH: mingw_64
+    BIOC_USE_DEVEL: FALSE
 
 init:
   ps: |
@@ -33,7 +36,8 @@ cache:
 
 build_script:
   - echo Current directory=%CD%
-  - travis-tool.sh install_r future markdown R.rsp
+  - travis-tool.sh install_deps
+  - travis-tool.sh install_r markdown R.rsp
   - travis-tool.sh install_r future.BatchJobs future.batchtools
   - travis-tool.sh install_bioc BiocParallel
   
