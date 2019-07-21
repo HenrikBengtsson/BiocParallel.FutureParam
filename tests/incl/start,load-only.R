@@ -24,10 +24,10 @@ all_strategies <- function(excl = NULL) {
   
   builtin <- future:::supportedStrategies()
   if (require(future.BatchJobs, character.only = TRUE)) {
-    builtin <- c(builtin, "batchjobs_local", "batchjobs_interactive")
+#    builtin <- c(builtin, "batchjobs_local", "batchjobs_interactive")
   }
   if (require(future.batchtools, character.only = TRUE)) {
-    builtin <- c(builtin, "batchtools_local", "batchtools_interactive")
+#    builtin <- c(builtin, "batchtools_local", "batchtools_interactive")
   }
   
   strategies <- c(builtin, strategies)

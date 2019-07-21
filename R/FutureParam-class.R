@@ -46,12 +46,21 @@ FutureParam <- function(catch.errors=TRUE, stop.on.error = TRUE, log=FALSE, thre
       log=log, threshold=threshold, logdir=logdir,
       ...
     )
-    x <- do.call(.FutureParam, args = prototype)
   } else {
-    x <- .FutureParam(workers=1L, catch.errors=catch.errors,
+    ## To please R CMD check
+    .prototype_update <- NULL
+    .BiocParallelParam_prototype <- NULL
+    prototype <- list(workers=1L, catch.errors=catch.errors,
                       stop.on.error=stop.on.error,
-                      log=log, threshold=threshold, logdir=logdir)
+                      log=log, threshold=threshold, logdir=logdir,
+		      ...)
+    names <- names(prototype)
+    stopifnot(all(nchar(names) > 0))
+    if (!is.element(name <- "tasks", names)) prototype[[name]] <- 0L
+    if (!is.element(name <- "exportglobals", names)) prototype[[name]] <- TRUE
   }
+  
+  x <- do.call(.FutureParam, args = prototype)
 
   validObject(x)
 

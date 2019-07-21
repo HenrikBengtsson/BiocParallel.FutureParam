@@ -5,8 +5,8 @@ Version: 0.1.1-9000 [2019-07-21]
 
 BUG FIXES:
 
- * FutureParam did not work with updates in BiocParallel (>= 1.15.14), which
-   are now part of Bioconductor (>= 3.9).
+ * FutureParam did not work in Bioconductor (>= 3.8) due to updates in
+   the BiocParallel package.
 
 
 Version: 0.1.1 [2017-07-09]
