@@ -2,7 +2,7 @@ Package: BiocParallel.FutureParam
 Version: 0.1.1-9000
 Depends:
     R (>= 3.3.0),
-    future (>= 1.7.0),
+    future (>= 1.14.0),
     BiocParallel (>= 1.6.0)
 Imports:
     methods
@@ -11,7 +11,7 @@ Suggests:
     R.rsp
 VignetteBuilder:
     R.rsp
-Title: A BiocParallelParam Class for Futures
+Title: Use Futures with BiocParallel
 Authors@R: c(
   person("Henrik", "Bengtsson", role=c("aut", "cre", "cph"),
                                 email = "henrikb@braju.com"),

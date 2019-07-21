@@ -1,4 +1,4 @@
-# BiocParallel.FutureParam: A BiocParallelParam Class for Futures
+# BiocParallel.FutureParam: Use Futures with BiocParallel
 
 ## Introduction
 The [future] package provides a generic API for using futures in R.
@@ -194,13 +194,6 @@ R package BiocParallel.FutureParam is only available via [GitHub](https://github
 remotes::install_github("HenrikBengtsson/BiocParallel.FutureParam")
 ```
 
-### Pre-release version
-
-To install the pre-release version that is available in Git branch `develop` on GitHub, use:
-```r
-remotes::install_github("HenrikBengtsson/BiocParallel.FutureParam@develop")
-```
-This will install the package from source.  
 
 
 
