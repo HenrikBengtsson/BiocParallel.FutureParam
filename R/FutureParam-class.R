@@ -54,6 +54,7 @@ FutureParam <- function(log=FALSE, threshold="INFO", logdir=NA_character_, ...) 
     if (getRversion() >= "3.5.0") {
       if (!is.element(name <- "tasks", names)) defaults[[name]] <- 0L
       if (!is.element(name <- "catch.errors", names)) defaults[[name]] <- TRUE
+      if (!is.element(name <- "stop.on.error", names)) defaults[[name]] <- TRUE
       if (!is.element(name <- "exportglobals", names)) defaults[[name]] <- TRUE
       prototype <- c(prototype, defaults)
     }
