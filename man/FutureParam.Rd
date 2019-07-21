@@ -18,7 +18,7 @@ FutureParam(catch.errors = TRUE, stop.on.error = TRUE, log = FALSE,
 
 \item{logdir}{...}
 
-\item{...}{...}
+\item{\ldots}{...}
 }
 \value{
 A \link[BiocParallel:BiocParallelParam]{BiocParallelParam} object of class FutureParam

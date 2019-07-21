@@ -12,8 +12,10 @@ Suggests:
 VignetteBuilder:
     R.rsp
 Title: A BiocParallelParam Class for Futures
-Authors@R: c(person("Henrik", "Bengtsson", role=c("aut", "cre", "cph"),
-                                          email = "henrikb@braju.com"))
+Authors@R: c(
+  person("Henrik", "Bengtsson", role=c("aut", "cre", "cph"),
+                                email = "henrikb@braju.com"),
+  person("Ryan", "Thompson", role=c("ctb"))
 Description: A 'BiocParallelParam' class using Futures that can be used with the BiocParallel framework.
 License: LGPL (>= 2.1)
 LazyLoad: TRUE
