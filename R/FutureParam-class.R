@@ -34,6 +34,7 @@
 #'   importFrom(BiocParallel,.BiocParallelParam_prototype)
 #' }
 FutureParam <- function(log=FALSE, threshold="INFO", logdir=NA_character_, ...) {
+  defaults <- list()
   if (getRversion() >= "3.6.0") {
     prototype <- .prototype_update(
       .BiocParallelParam_prototype,
@@ -51,13 +52,14 @@ FutureParam <- function(log=FALSE, threshold="INFO", logdir=NA_character_, ...) 
     names <- names(prototype)
     stopifnot(all(nchar(names) > 0))
     if (getRversion() >= "3.5.0") {
-      if (!is.element(name <- "tasks", names)) prototype[[name]] <- 0L
-      if (!is.element(name <- "catch.errors", names)) prototype[[name]] <- TRUE
-      if (!is.element(name <- "exportglobals", names)) prototype[[name]] <- TRUE
+      if (!is.element(name <- "tasks", names)) defaults[[name]] <- 0L
+      if (!is.element(name <- "catch.errors", names)) defaults[[name]] <- TRUE
+      if (!is.element(name <- "exportglobals", names)) defaults[[name]] <- TRUE
+      prototype <- c(prototype, defaults)
     }
   }
 
-  if (is.element("catch.errors", names(prototype))) {
+  if (is.element("catch.errors", setdiff(names(prototype), names(defaults)))) {
     .Defunct(msg = "Argument 'catch.errors' is deprecated, use 'stop.on.error' instead.")
   }
 
