@@ -4,12 +4,10 @@
 \alias{FutureParam}
 \title{Creates a FutureParam object}
 \usage{
-FutureParam(catch.errors = TRUE, stop.on.error = TRUE, log = FALSE,
-  threshold = "INFO", logdir = NA_character_, ...)
+FutureParam(stop.on.error = TRUE, log = FALSE, threshold = "INFO",
+  logdir = NA_character_, ...)
 }
 \arguments{
-\item{catch.errors}{...}
-
 \item{stop.on.error}{...}
 
 \item{log}{...}
