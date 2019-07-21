@@ -3,9 +3,8 @@
 .FutureParam <- setRefClass("FutureParam", contains="BiocParallelParam",
   fields=list(logdir="character"),
   methods=list(
-    initialize = function(..., threshold="INFO", logdir=NA_character_) {
+    initialize = function(...) {
       callSuper(...)
-      initFields(threshold=threshold, logdir=logdir)
     },
     show = function() {
       callSuper()
@@ -16,8 +15,6 @@
 
 #' Creates a FutureParam object
 #'
-#' @param threshold ...
-#' @param logdir ...
 #' @param \ldots Arguments passed to the initialization method of
 #'   [BiocParallel::BiocParallelParam].
 #'
@@ -32,22 +29,19 @@
 #'   importFrom(BiocParallel,.prototype_update)
 #'   importFrom(BiocParallel,.BiocParallelParam_prototype)
 #' }
-FutureParam <- function(threshold="INFO", logdir=NA_character_, ...) {
+FutureParam <- function(...) {
   defaults <- list()
   if (getRversion() >= "3.6.0") {
     prototype <- .prototype_update(
       .BiocParallelParam_prototype,
       workers=1L,
-      threshold=threshold, logdir=logdir,
       ...
     )
   } else {
     ## To please R CMD check
     .prototype_update <- NULL
     .BiocParallelParam_prototype <- NULL
-    prototype <- list(workers=1L,
-                      threshold=threshold, logdir=logdir,
-		      ...)
+    prototype <- list(workers=1L, ...)
     names <- names(prototype)
     stopifnot(all(nchar(names) > 0))
     if (getRversion() >= "3.5.0") {
@@ -56,6 +50,8 @@ FutureParam <- function(threshold="INFO", logdir=NA_character_, ...) {
       if (!is.element(name <- "stop.on.error", names)) defaults[[name]] <- TRUE
       if (!is.element(name <- "exportglobals", names)) defaults[[name]] <- TRUE
       if (!is.element(name <- "log", names)) defaults[[name]] <- FALSE
+      if (!is.element(name <- "logdir", names)) defaults[[name]] <- NA_character_
+      if (!is.element(name <- "threshold", names)) defaults[[name]] <- "INFO"
       prototype <- c(prototype, defaults)
     }
   }

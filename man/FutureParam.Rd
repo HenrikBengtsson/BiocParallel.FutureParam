@@ -4,13 +4,9 @@
 \alias{FutureParam}
 \title{Creates a FutureParam object}
 \usage{
-FutureParam(threshold = "INFO", logdir = NA_character_, ...)
+FutureParam(...)
 }
 \arguments{
-\item{threshold}{...}
-
-\item{logdir}{...}
-
 \item{\ldots}{Arguments passed to the initialization method of
 \link[BiocParallel:BiocParallelParam]{BiocParallel::BiocParallelParam}.}
 }
