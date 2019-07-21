@@ -4,12 +4,9 @@
 \alias{FutureParam}
 \title{Creates a FutureParam object}
 \usage{
-FutureParam(log = FALSE, threshold = "INFO", logdir = NA_character_,
-  ...)
+FutureParam(threshold = "INFO", logdir = NA_character_, ...)
 }
 \arguments{
-\item{log}{...}
-
 \item{threshold}{...}
 
 \item{logdir}{...}
