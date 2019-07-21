@@ -188,14 +188,14 @@ plan(future.callr::callr)
 ## Installation
 R package BiocParallel.FutureParam is only available via [GitHub](https://github.com/HenrikBengtsson/BiocParallel.FutureParam) and can be installed in R as:
 ```r
-remotes::install_github('HenrikBengtsson/BiocParallel.FutureParam')
+remotes::install_github("HenrikBengtsson/BiocParallel.FutureParam")
 ```
 
 ### Pre-release version
 
-To install the pre-release version that is available in Git branch `develop` on GitHub, use:
+To install the pre-release version that is available in Git branch `feature/fix-Bioc_3.9` on GitHub, use:
 ```r
-remotes::install_github('HenrikBengtsson/BiocParallel.FutureParam@develop')
+remotes::install_github("HenrikBengtsson/BiocParallel.FutureParam@feature/fix-Bioc_3.9")
 ```
 This will install the package from source.  
 
@@ -210,7 +210,7 @@ Contributing to this package is easy.  Just send a [pull request](https://help.g
 
 ## Software status
 
-| Resource:     | GitHub        | Travis CI       | Appveyor         |
+| Resource:     | GitHub        | Travis CI       | AppVeyor         |
 | ------------- | ------------------- | --------------- | ---------------- |
 | _Platforms:_  | _Multiple_          | _Linux & macOS_ | _Windows_        |
 | R CMD check   |  | <a href="https://travis-ci.org/HenrikBengtsson/BiocParallel.FutureParam"><img src="https://travis-ci.org/HenrikBengtsson/BiocParallel.FutureParam.svg" alt="Build status"></a>   | <a href="https://ci.appveyor.com/project/HenrikBengtsson/biocparallel-futureparam"><img src="https://ci.appveyor.com/api/projects/status/github/HenrikBengtsson/BiocParallel.FutureParam?svg=true" alt="Build status"></a> |

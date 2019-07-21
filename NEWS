@@ -1,16 +1,19 @@
 Package: BiocParallel.FutureParam
 =================================
 
-Version: 0.1.1-9000 [2018-02-13]
+Version: 0.1.1-9000 [2019-07-21]
 
- o ...
- 
+BUG FIXES:
+
+ * FutureParam did not work in Bioconductor (>= 3.8) due to updates in
+   the BiocParallel package.
+
 
 Version: 0.1.1 [2017-07-09]
 
 SOFTWARE QUALITY:
 
- o TESTS: Now testing FutureParam with all built-in strategies of the future
+ * TESTS: Now testing FutureParam with all built-in strategies of the future
    package as well as the 'local' and 'interactive' strategies of
    future.batchtools and future.BatchJobs.  In order to test with the latter
    two, those packages need to be installed.
@@ -20,4 +23,4 @@ Version: 0.1.0 [2016-05-15]
 
 NEW FEATURES:
 
- o Package created.
+ * Package created.

@@ -5,7 +5,7 @@
 \title{Creates a FutureParam object}
 \usage{
 FutureParam(catch.errors = TRUE, stop.on.error = TRUE, log = FALSE,
-  threshold = "INFO", logdir = NA_character_)
+  threshold = "INFO", logdir = NA_character_, ...)
 }
 \arguments{
 \item{catch.errors}{...}
@@ -17,6 +17,8 @@ FutureParam(catch.errors = TRUE, stop.on.error = TRUE, log = FALSE,
 \item{threshold}{...}
 
 \item{logdir}{...}
+
+\item{\ldots}{...}
 }
 \value{
 A \link[BiocParallel:BiocParallelParam]{BiocParallelParam} object of class FutureParam

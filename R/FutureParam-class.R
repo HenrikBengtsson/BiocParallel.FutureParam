@@ -21,6 +21,7 @@
 #' @param log ...
 #' @param threshold ...
 #' @param logdir ...
+#' @param \ldots ...
 #'
 #' @return A \link[BiocParallel:BiocParallelParam]{BiocParallelParam} object of class FutureParam
 #'
@@ -28,14 +29,40 @@
 #'
 #' @export
 #' @importFrom methods validObject
-FutureParam <- function(catch.errors=TRUE, stop.on.error = TRUE, log=FALSE, threshold="INFO", logdir=NA_character_) {
+#' @rawNamespace
+#' if (getRversion() >= "3.6.0") {
+#'   importFrom(BiocParallel,.prototype_update)
+#'   importFrom(BiocParallel,.BiocParallelParam_prototype)
+#' }
+FutureParam <- function(catch.errors=TRUE, stop.on.error = TRUE, log=FALSE, threshold="INFO", logdir=NA_character_, ...) {
   if (!missing(catch.errors)) {
     warning("'catch.errors' is deprecated, use 'stop.on.error'")
   }
-
-  x <- .FutureParam(workers=1L, catch.errors=catch.errors,
-                    stop.on.error=stop.on.error,
-                    log=log, threshold=threshold, logdir=logdir)
+  
+  if (getRversion() >= "3.6.0") {
+    prototype <- .prototype_update(
+      .BiocParallelParam_prototype,
+      workers=1L, stop.on.error=stop.on.error,
+      log=log, threshold=threshold, logdir=logdir,
+      ...
+    )
+  } else {
+    ## To please R CMD check
+    .prototype_update <- NULL
+    .BiocParallelParam_prototype <- NULL
+    prototype <- list(workers=1L, catch.errors=catch.errors,
+                      stop.on.error=stop.on.error,
+                      log=log, threshold=threshold, logdir=logdir,
+		      ...)
+    names <- names(prototype)
+    stopifnot(all(nchar(names) > 0))
+    if (getRversion() >= "3.5.0") {
+      if (!is.element(name <- "tasks", names)) prototype[[name]] <- 0L
+      if (!is.element(name <- "exportglobals", names)) prototype[[name]] <- TRUE
+    }
+  }
+  
+  x <- do.call(.FutureParam, args = prototype)
 
   validObject(x)
 
