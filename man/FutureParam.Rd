@@ -21,7 +21,7 @@ FutureParam(catch.errors = TRUE, stop.on.error = TRUE, log = FALSE,
 \item{\ldots}{...}
 }
 \value{
-A \link[BiocParallel:BiocParallelParam]{BiocParallelParam} object of class FutureParam
+A \link[BiocParallel:BiocParallelParam]{BiocParallel::BiocParallelParam} object of class FutureParam.
 }
 \description{
 Creates a FutureParam object

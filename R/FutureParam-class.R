@@ -23,7 +23,7 @@
 #' @param logdir ...
 #' @param \ldots ...
 #'
-#' @return A \link[BiocParallel:BiocParallelParam]{BiocParallelParam} object of class FutureParam
+#' @return A [BiocParallel::BiocParallelParam] object of class FutureParam.
 #'
 #' @example incl/BiocParallel.FutureParam.R
 #'
