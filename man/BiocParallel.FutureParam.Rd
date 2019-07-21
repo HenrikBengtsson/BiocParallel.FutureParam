@@ -7,7 +7,7 @@
 \title{BiocParallel.FutureParam: A BiocParallelParam class using Futures}
 \description{
 The \pkg{BiocParallel.FutureParam} package provides \link{FutureParam},
-a \link[BiocParallel]{BiocParallelParam} class, for the
+a \link[BiocParallel:BiocParallelParam]{BiocParallel::BiocParallelParam} class, for the
 \pkg{BiocParallel} package that works with \emph{any} type of future.
 (that is supported by Future API of the \pkg{future} package) can
 be used for asynchronous (parallel/distributed) or synchronous
@@ -25,7 +25,7 @@ package supports.
 To use futures with the \pkg{BiocParallel} package, load
 \pkg{BiocParallel.FutureParam}, call \code{register(FutureParam())},
 select the type of future you wish to use via
-\code{\link[future:plan]{plan()}}.
+\code{\link[=future:plan]{future:plan()}}.
 }
 \examples{
 library("BiocParallel.FutureParam")

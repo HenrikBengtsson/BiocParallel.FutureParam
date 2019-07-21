@@ -3,9 +3,8 @@
 .FutureParam <- setRefClass("FutureParam", contains="BiocParallelParam",
   fields=list(logdir="character"),
   methods=list(
-    initialize = function(..., threshold="INFO", logdir=NA_character_) {
+    initialize = function(...) {
       callSuper(...)
-      initFields(threshold=threshold, logdir=logdir)
     },
     show = function() {
       callSuper()
@@ -16,26 +15,52 @@
 
 #' Creates a FutureParam object
 #'
-#' @param catch.errors ...
-#' @param stop.on.error ...
-#' @param log ...
-#' @param threshold ...
-#' @param logdir ...
+#' @param \ldots Arguments passed to the initialization method of
+#'   [BiocParallel::BiocParallelParam].
 #'
-#' @return A \link[BiocParallel:BiocParallelParam]{BiocParallelParam} object of class FutureParam
+#' @return A [BiocParallel::BiocParallelParam] object of class FutureParam.
 #'
 #' @example incl/BiocParallel.FutureParam.R
 #'
 #' @export
 #' @importFrom methods validObject
-FutureParam <- function(catch.errors=TRUE, stop.on.error = TRUE, log=FALSE, threshold="INFO", logdir=NA_character_) {
-  if (!missing(catch.errors)) {
-    warning("'catch.errors' is deprecated, use 'stop.on.error'")
+#' @rawNamespace
+#' if (getRversion() >= "3.6.0") {
+#'   importFrom(BiocParallel,.prototype_update)
+#'   importFrom(BiocParallel,.BiocParallelParam_prototype)
+#' }
+FutureParam <- function(...) {
+  defaults <- list()
+  if (getRversion() >= "3.6.0") {
+    prototype <- .prototype_update(
+      .BiocParallelParam_prototype,
+      workers=1L,
+      ...
+    )
+  } else {
+    ## To please R CMD check
+    .prototype_update <- NULL
+    .BiocParallelParam_prototype <- NULL
+    prototype <- list(workers=1L, ...)
+    names <- names(prototype)
+    stopifnot(all(nchar(names) > 0))
+    if (getRversion() >= "3.5.0") {
+      if (!is.element(name <- "tasks", names)) defaults[[name]] <- 0L
+      if (!is.element(name <- "catch.errors", names)) defaults[[name]] <- TRUE
+      if (!is.element(name <- "stop.on.error", names)) defaults[[name]] <- TRUE
+      if (!is.element(name <- "exportglobals", names)) defaults[[name]] <- TRUE
+      if (!is.element(name <- "log", names)) defaults[[name]] <- FALSE
+      if (!is.element(name <- "logdir", names)) defaults[[name]] <- NA_character_
+      if (!is.element(name <- "threshold", names)) defaults[[name]] <- "INFO"
+      prototype <- c(prototype, defaults)
+    }
   }
 
-  x <- .FutureParam(workers=1L, catch.errors=catch.errors,
-                    stop.on.error=stop.on.error,
-                    log=log, threshold=threshold, logdir=logdir)
+  if (is.element("catch.errors", setdiff(names(prototype), names(defaults)))) {
+    .Defunct(msg = "Argument 'catch.errors' is deprecated, use 'stop.on.error' instead.")
+  }
+
+  x <- do.call(.FutureParam, args = prototype)
 
   validObject(x)
 
