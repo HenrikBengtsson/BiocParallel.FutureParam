@@ -56,8 +56,10 @@ FutureParam <- function(catch.errors=TRUE, stop.on.error = TRUE, log=FALSE, thre
 		      ...)
     names <- names(prototype)
     stopifnot(all(nchar(names) > 0))
-    if (!is.element(name <- "tasks", names)) prototype[[name]] <- 0L
-    if (!is.element(name <- "exportglobals", names)) prototype[[name]] <- TRUE
+    if (getRversion() >= "3.5.0") {
+      if (!is.element(name <- "tasks", names)) prototype[[name]] <- 0L
+      if (!is.element(name <- "exportglobals", names)) prototype[[name]] <- TRUE
+    }
   }
   
   x <- do.call(.FutureParam, args = prototype)
