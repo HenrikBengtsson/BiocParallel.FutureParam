@@ -35,8 +35,8 @@ matrix:
         - _R_S3_METHOD_LOOKUP_USE_TOPENV_AS_DEFENV_=true
         - _R_CHECK_CONNECTIONS_LEFT_OPEN_=true
         - _R_CHECK_LENGTH_1_CONDITION_=true
-        ## Does not work, because futile.* package fail to install
-        ## - _R_CHECK_LENGTH_1_LOGIC2_=true
+        - _R_CHECK_LENGTH_1_LOGIC2_=true
+        - _R_CLASS_MATRIX_ARRAY_=true
     - os: linux
       r: devel
     - os: osx
