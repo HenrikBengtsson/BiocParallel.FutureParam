@@ -1,6 +1,11 @@
 Package: BiocParallel.FutureParam
 =================================
 
+Version: 0.2.1-9000 [2019-12-16]
+
+ * ...
+ 
+
 Version: 0.2.1 [2019-12-16]
 
 BUG FIXES:
