@@ -1,3 +1,6 @@
+
+
+
 # BiocParallel.FutureParam: Use Futures with BiocParallel
 
 ## Introduction
@@ -17,15 +20,14 @@ The [BiocParallel.FutureParam] package provides FutureParam, a BiocParallelParam
 The BiocParallel.FutureParam package is cross platform just as the future package.
 
 Below is an example showing how to use FutureParam with
-_multiprocess_ futures.  A multiprocess future will be evaluated in
-parallel using forked processes.  If process forking is not supported
-by the operating system, then multiple background R sessions will
-instead be used to resolve the futures.
+_multicore_ futures.  A multicore future will be evaluated in
+parallel using forked workers, which is not supported on MS Windows
+when it will fall back to sequential processing.
 
 ```r
 library("BiocParallel.FutureParam")
 register(FutureParam())
-plan(multiprocess)
+plan(multicore)
 
 mu <- 1.0
 sigma <- 2.0
@@ -194,6 +196,7 @@ R package BiocParallel.FutureParam is only available via [GitHub](https://github
 remotes::install_github("HenrikBengtsson/BiocParallel.FutureParam", ref="master")
 ```
 
+
 ### Pre-release version
 
 To install the pre-release version that is available in Git branch `develop` on GitHub, use:
@@ -202,13 +205,13 @@ remotes::install_github("HenrikBengtsson/BiocParallel.FutureParam", ref="develop
 ```
 This will install the package from source.  
 
-
-
 ## Contributions
 
-This Git repository uses the [Git Flow](http://nvie.com/posts/a-successful-git-branching-model/) branching model (the [`git flow`](https://github.com/petervanderdoes/gitflow-avh) extension is useful for this).  The [`develop`](https://github.com/HenrikBengtsson/BiocParallel.FutureParam/tree/develop) branch contains the latest contributions and other code that will appear in the next release, and the [`master`](https://github.com/HenrikBengtsson/BiocParallel.FutureParam) branch contains the code of the latest release.
+This Git repository uses the [Git Flow](https://nvie.com/posts/a-successful-git-branching-model/) branching model (the [`git flow`](https://github.com/petervanderdoes/gitflow-avh) extension is useful for this).  The [`develop`](https://github.com/HenrikBengtsson/BiocParallel.FutureParam/tree/develop) branch contains the latest contributions and other code that will appear in the next release, and the [`master`](https://github.com/HenrikBengtsson/BiocParallel.FutureParam) branch contains the code of the latest release.
 
 Contributing to this package is easy.  Just send a [pull request](https://help.github.com/articles/using-pull-requests/).  When you send your PR, make sure `develop` is the destination branch on the [BiocParallel.FutureParam repository](https://github.com/HenrikBengtsson/BiocParallel.FutureParam).  Your PR should pass `R CMD check --as-cran`, which will also be checked by <a href="https://travis-ci.org/HenrikBengtsson/BiocParallel.FutureParam">Travis CI</a> and <a href="https://ci.appveyor.com/project/HenrikBengtsson/biocparallel-futureparam">AppVeyor CI</a> when the PR is submitted.
+
+We abide to the [Code of Conduct](https://www.contributor-covenant.org/version/2/0/code_of_conduct/) of Contributor Covenant.
 
 
 ## Software status
