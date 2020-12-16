@@ -3,11 +3,10 @@
 \docType{package}
 \name{BiocParallel.FutureParam}
 \alias{BiocParallel.FutureParam}
-\alias{BiocParallel.FutureParam-package}
 \title{BiocParallel.FutureParam: A BiocParallelParam class using Futures}
 \description{
 The \pkg{BiocParallel.FutureParam} package provides \link{FutureParam},
-a \link[BiocParallel:BiocParallelParam]{BiocParallel::BiocParallelParam} class, for the
+a \link[BiocParallel:BiocParallelParam-class]{BiocParallel::BiocParallelParam} class, for the
 \pkg{BiocParallel} package that works with \emph{any} type of future.
 (that is supported by Future API of the \pkg{future} package) can
 be used for asynchronous (parallel/distributed) or synchronous
