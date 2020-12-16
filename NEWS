@@ -1,6 +1,17 @@
 Package: BiocParallel.FutureParam
 =================================
 
+Version: 0.2.1 [2019-12-16]
+
+BUG FIXES:
+
+ * bplapply() and bpiterate() for FutureParam now uses value() instead of
+   values(), which is deprecated in future (>= 1.20.0).
+
+ * Using argument 'result = TRUE' in internal resolve() calls instead of
+   'value = TRUE', which is deprecated in future (>= 1.15.0).
+
+
 Version: 0.2.0 [2019-07-21]
 
 BUG FIXES:

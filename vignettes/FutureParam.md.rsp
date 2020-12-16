@@ -38,15 +38,14 @@ The [BiocParallel.FutureParam] package provides FutureParam, a BiocParallelParam
 The BiocParallel.FutureParam package is cross platform just as the future package.
 
 Below is an example showing how to use FutureParam with
-_multiprocess_ futures.  A multiprocess future will be evaluated in
-parallel using forked processes.  If process forking is not supported
-by the operating system, then multiple background R sessions will
-instead be used to resolve the futures.
+_multicore_ futures.  A multicore future will be evaluated in
+parallel using forked workers, which is not supported on MS Windows
+when it will fall back to sequential processing.
 
 ```r
 library("BiocParallel.FutureParam")
 register(FutureParam())
-plan(multiprocess)
+plan(multicore)
 
 mu <- 1.0
 sigma <- 2.0

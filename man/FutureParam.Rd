@@ -8,10 +8,10 @@ FutureParam(...)
 }
 \arguments{
 \item{\ldots}{Arguments passed to the initialization method of
-\link[BiocParallel:BiocParallelParam]{BiocParallel::BiocParallelParam}.}
+\link[BiocParallel:BiocParallelParam-class]{BiocParallel::BiocParallelParam}.}
 }
 \value{
-A \link[BiocParallel:BiocParallelParam]{BiocParallel::BiocParallelParam} object of class FutureParam.
+A \link[BiocParallel:BiocParallelParam-class]{BiocParallel::BiocParallelParam} object of class FutureParam.
 }
 \description{
 Creates a FutureParam object

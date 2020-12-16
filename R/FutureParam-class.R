@@ -122,7 +122,7 @@ setReplaceMethod("bplogdir", c("FutureParam", "character"), function(x, value) {
 
 #' @importFrom methods setMethod
 #' @importFrom BiocParallel bplog bpok bpparam bpstopOnError bpthreshold bptimeout
-#' @importFrom future future resolve values
+#' @importFrom future future resolve value
 setMethod("bplapply", c("ANY", "FutureParam"), function(X, FUN, ..., BPREDO=list(), BPPARAM=bpparam()) {
   .composeTry <- importBP(".composeTry")
   .error_bplist <- importBP(".error_bplist")
@@ -153,10 +153,10 @@ setMethod("bplapply", c("ANY", "FutureParam"), function(X, FUN, ..., BPREDO=list
   names(fs) <- names(X)
 
   ## Resolve futures
-  fs <- resolve(fs, value=TRUE)
+  fs <- resolve(fs, result=TRUE)
 
   ## Retrieve values
-  res <- values(fs, signal=FALSE)
+  res <- value(fs, signal=FALSE)
 
   if (any(idx)) {
     BPREDO[idx] <- res
@@ -174,7 +174,7 @@ setMethod("bplapply", c("ANY", "FutureParam"), function(X, FUN, ..., BPREDO=list
 
 #' @importFrom methods setMethod
 #' @importFrom BiocParallel bploop bplog bptimeout bpstopOnError
-#' @importFrom future future resolve values
+#' @importFrom future future resolve value
 setMethod("bpiterate", c("ANY", "ANY", "FutureParam"), function(ITER, FUN, ..., REDUCE, init, reduce.in.order=FALSE, BPPARAM=bpparam()) {
   .composeTry <- importBP(".composeTry")
 
@@ -214,10 +214,10 @@ setMethod("bpiterate", c("ANY", "ANY", "FutureParam"), function(ITER, FUN, ..., 
   }
 
   ## Resolve futures
-  fs <- resolve(fs, value=TRUE)
+  fs <- resolve(fs, result=TRUE)
 
   ## Retrieve values
-  res <- values(fs, signal=FALSE)
+  res <- value(fs, signal=FALSE)
 
   if (hasREDUCE && length(res) > 1) {
     res <- Reduce(REDUCE, res)
