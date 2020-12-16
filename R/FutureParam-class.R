@@ -153,7 +153,7 @@ setMethod("bplapply", c("ANY", "FutureParam"), function(X, FUN, ..., BPREDO=list
   names(fs) <- names(X)
 
   ## Resolve futures
-  fs <- resolve(fs, value=TRUE)
+  fs <- resolve(fs, result=TRUE)
 
   ## Retrieve values
   res <- value(fs, signal=FALSE)
@@ -214,7 +214,7 @@ setMethod("bpiterate", c("ANY", "ANY", "FutureParam"), function(ITER, FUN, ..., 
   }
 
   ## Resolve futures
-  fs <- resolve(fs, value=TRUE)
+  fs <- resolve(fs, result=TRUE)
 
   ## Retrieve values
   res <- value(fs, signal=FALSE)
