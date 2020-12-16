@@ -1,5 +1,5 @@
 Package: BiocParallel.FutureParam
-Version: 0.2.0-9000
+Version: 0.2.1
 Depends:
     R (>= 3.3.0),
     future (>= 1.21.0),
@@ -16,7 +16,7 @@ Authors@R: c(
   person("Henrik", "Bengtsson", role=c("aut", "cre", "cph"),
                                 email = "henrikb@braju.com"),
   person("Ryan", "Thompson", role=c("ctb")))
-Description: A 'BiocParallelParam' class using Futures that can be used with the BiocParallel framework.
+Description: A 'BiocParallelParam' class for using futures with the BiocParallel framework, e.g. BiocParallel::register(FutureParam()).
 License: LGPL (>= 2.1)
 LazyLoad: TRUE
 URL: https://github.com/HenrikBengtsson/BiocParallel.FutureParam
