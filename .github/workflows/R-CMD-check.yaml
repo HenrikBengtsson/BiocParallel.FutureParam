@@ -8,7 +8,7 @@ jobs:
 
     runs-on: ${{ matrix.config.os }}
 
-    name: ${{ matrix.config.os }} (${{ matrix.config.r }}) [usexdr=${{ matrix.config.usexdr }}]
+    name: ${{ matrix.config.os }} (${{ matrix.config.r }})
 
     strategy:
       fail-fast: false
@@ -67,6 +67,7 @@ jobs:
         run: |
           remotes::install_deps(dependencies = TRUE)
           remotes::install_cran("rcmdcheck")
+          remotes::install_bioc("BiocParallel")
           install.packages(".", repos=NULL, type="source")  ## needed by parallel workers
         shell: Rscript {0}
 
