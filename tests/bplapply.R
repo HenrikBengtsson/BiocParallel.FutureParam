@@ -29,7 +29,10 @@ for (strategy in strategies) {
     rnorm(i, mean = mu, sd = sigma)
   })
   res <- all.equal(expected, current)
-  if (!isTRUE(res)) print(res)
+  if (!isTRUE(res)) {
+    str(list(expected = expected, current = current))
+    print(res)
+  }
   stopifnot(isTRUE(res), identical(expected, current))
 
   message(sprintf("- plan('%s') ... DONE", strategy))
