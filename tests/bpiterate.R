@@ -1,5 +1,5 @@
 source("incl/start.R")
-strategies <- all_strategies(excl = "multiprocess")
+strategies <- all_strategies()
 
 message("*** bpiterate() w/ FutureParam ...")
 

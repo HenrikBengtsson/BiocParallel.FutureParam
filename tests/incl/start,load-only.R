@@ -1,6 +1,6 @@
 ## Record original state
 ovars <- ls()
-oopts <- options(warn = 1L, mc.cores = 2L, future.debug = TRUE)
+oopts <- options(warn = 1L, mc.cores = 2L, future.debug = FALSE)
 oopts$future.delete <- getOption("future.delete")
 oplan <- future::plan()
 
@@ -16,7 +16,7 @@ future.BatchJobs <- "future.BatchJobs"    #nolint
 
 fullTest <- (Sys.getenv("_R_CHECK_FULL_") != "")
 
-all_strategies <- function(excl = NULL) {
+all_strategies <- function(excl = "multiprocess") {
   strategies <- Sys.getenv("R_FUTURE_TESTS_STRATEGIES")
   strategies <- unlist(strsplit(strategies, split = ","))
   strategies <- gsub(" ", "", strategies)

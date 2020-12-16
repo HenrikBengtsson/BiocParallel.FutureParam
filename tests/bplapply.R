@@ -1,5 +1,5 @@
 source("incl/start.R")
-strategies <- all_strategies(excl = "multiprocess")
+strategies <- all_strategies()
 
 message("*** bplapply() w/ FutureParam ...")
 
@@ -28,7 +28,9 @@ for (strategy in strategies) {
     set.seed(0xBEEF)
     rnorm(i, mean = mu, sd = sigma)
   })
-  stopifnot(identical(expected, current))
+  res <- all.equal(expected, current)
+  if (!isTRUE(res)) print(res)
+  stopifnot(isTRUE(res), identical(expected, current))
 
   message(sprintf("- plan('%s') ... DONE", strategy))
 } ## for (strategy ...)
