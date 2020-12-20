@@ -3,6 +3,8 @@
 
 # BiocParallel.FutureParam: Use Futures with BiocParallel
 
+![Life cycle: experimental](man/figures/lifecycle-experimental-orange.svg)
+
 ## Introduction
 The [future] package provides a generic API for using futures in R.
 A future is a simple yet powerful mechanism to evaluate an R expression

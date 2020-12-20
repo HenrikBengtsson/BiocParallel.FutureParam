@@ -1,3 +1,5 @@
+![Life cycle: experimental](man/figures/lifecycle-experimental-orange.svg)
+
 <%
 ## Reuse the future vignette
 md <- R.rsp::rstring(file="vignettes/FutureParam.md.rsp", postprocess=FALSE)
