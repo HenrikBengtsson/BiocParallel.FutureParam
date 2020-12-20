@@ -62,7 +62,7 @@ provides the same functionality as many of the existing
 BiocParallelParam classes, e.g. SerialParam, SnowParam,
 MulticoreParam, BatchJobsParam and DoParParam.  In addition,
 it provides supports for additional backends that are not yet
-implemented in [BiocParallel], e.g. [batchtools] and [callr].
+implemented in [BiocParallel], e.g. [callr] and ~~[batchtools]~~ (in BiocParallel (>=1.14.0) since Bioconductor 3.7 of May 2018).
 
 <table style="width: 100%;">
 <tr>
