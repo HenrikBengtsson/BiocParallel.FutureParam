@@ -44,9 +44,9 @@ x <- bplapply(1:3, mu = mu, sigma = sigma, function(i, mu, sigma) {
 Due to the generic nature of futures, the FutureParam class
 provides the same functionality as many of the existing
 BiocParallelParam classes, e.g. SerialParam, SnowParam,
-MulticoreParam, BatchJobsParam and DoParParam.  In addition,
+MulticoreParam, BatchtoolsParam and DoParParam.  In addition,
 it provides supports for additional backends that are not yet
-implemented in [BiocParallel], e.g. [callr] and ~~[batchtools]~~ (in BiocParallel (>=1.14.0) since Bioconductor 3.7 of May 2018).
+implemented in [BiocParallel], e.g. [callr] and [batchtools].
 
 <table style="width: 100%;">
 <tr>
@@ -137,23 +137,6 @@ plan(cluster, workers = cl)
 <tr style="vertical-align: center;">
 <td>
 <pre><code class="r">library("BiocParallel")
-library("BatchJobs")
-funs <- makeClusterFunctionsSLURM("~/slurm.tmpl")
-register(BatchJobsParam(cluster.functions = funs))
-</code></pre>
-</td>
-<td>
-<pre><code class="r">library("BiocParallel.FutureParam")
-register(FutureParam())
-plan(future.BatchJobs::batchjobs_slurm,
-     pathname = "~/slurm.tmpl")
-</code></pre>
-</td>
-</tr>
-
-<tr style="vertical-align: center;">
-<td>
-<pre><code class="r">library("BiocParallel")
 register(BatchtoolsParam(cluster="sge",
                          template="~/sge.tmpl"))
 </code></pre>
@@ -182,13 +165,11 @@ plan(future.callr::callr)
 <table>
 
 
-[BatchJobs]: https://cran.r-project.org/package=BatchJobs
 [batchtools]: https://cran.r-project.org/package=batchtools
 [callr]: https://cran.r-project.org/package=callr
 [BiocParallel]: https://bioconductor.org/packages/release/bioc/html/BiocParallel.html
 [BiocParallel.FutureParam]: https://github.com/HenrikBengtsson/BiocParallel.FutureParam
 [future]: https://cran.r-project.org/package=future
-[future.BatchJobs]: https://cran.r-project.org/package=future.BatchJobs
 [future.batchtools]: https://cran.r-project.org/package=future.batchtools
 [future.callr]: https://cran.r-project.org/package=future.callr
 
