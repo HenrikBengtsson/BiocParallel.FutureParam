@@ -12,7 +12,6 @@ BiocParallel::register(BiocParallel.FutureParam::FutureParam())
 
 ## To please R CMD check when using require().
 future.batchtools <- "future.batchtools"  #nolint
-future.BatchJobs <- "future.BatchJobs"    #nolint
 
 fullTest <- (Sys.getenv("_R_CHECK_FULL_") != "")
 
@@ -23,9 +22,6 @@ all_strategies <- function(excl = "multiprocess") {
   strategies <- strategies[nzchar(strategies)]
   
   builtin <- future:::supportedStrategies()
-  if (require(future.BatchJobs, character.only = TRUE)) {
-    builtin <- c(builtin, "batchjobs_local", "batchjobs_interactive")
-  }
   if (require(future.batchtools, character.only = TRUE)) {
     builtin <- c(builtin, "batchtools_local", "batchtools_interactive")
   }

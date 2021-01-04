@@ -16,9 +16,9 @@ be used for asynchronous (parallel/distributed) or synchronous
 Futures themselves are provided by the \pkg{future} package, e.g.
 multicore, multisession, ad hoc cluster, and MPI cluster futures.
 Additional futures are provided by other packages.
-For example, BatchJobs futures are implemented by the
-\pkg{future.BatchJobs} package, which expands the support for
-asynchronous processing to anything that the \pkg{BatchJobs}
+For example, batchtools futures are implemented by the
+\pkg{future.batchtools} package, which expands the support for
+asynchronous processing to anything that the \pkg{batchtools}
 package supports.
 
 To use futures with the \pkg{BiocParallel} package, load
