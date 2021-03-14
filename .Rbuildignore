@@ -5,10 +5,13 @@
 ^.git
 ^.github
 ^.make
+^.local
 ^INSTALL[.]md$
 ^OVERVIEW[.]md$
 ^README[.]md$
 ^CONDUCT[.]md$
+^CONTRIBUTING[.]md$
+^docs
 
 #----------------------------
 # devtools
@@ -56,4 +59,3 @@ Rplots.pdf$
 #----------------------------
 ^.ghi
 ^.issues
-
