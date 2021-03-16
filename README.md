@@ -1,9 +1,17 @@
 
 
+<div id="badges"><!-- pkgdown markup -->
+
+<a href="https://github.com/HenrikBengtsson/BiocParallel.FutureParam/actions?query=workflow%3AR-CMD-check"><img border="0" src="https://github.com/HenrikBengtsson/BiocParallel.FutureParam/workflows/R-CMD-check/badge.svg?branch=develop" alt="Build status"></a></a>
+<a href="https://travis-ci.org/HenrikBengtsson/BiocParallel.FutureParam"><img border="0" src="https://travis-ci.org/HenrikBengtsson/BiocParallel.FutureParam.svg" alt="Build status"></a></a>
+<a href="https://ci.appveyor.com/project/HenrikBengtsson/biocparallel-futureparam"><img border="0" src="https://ci.appveyor.com/api/projects/status/github/HenrikBengtsson/BiocParallel.FutureParam?svg=true" alt="Build status"></a></a>
+<a href="https://codecov.io/gh/HenrikBengtsson/BiocParallel.FutureParam"><img border="0" src="https://codecov.io/gh/HenrikBengtsson/BiocParallel.FutureParam/branch/develop/graph/badge.svg" alt="Coverage Status"></a></a>
+<a href="https://lifecycle.r-lib.org/articles/stages.html"><img border="0" src="man/figures/lifecycle-experimental-orange.svg" alt="Life cycle: experimental"></a></a>
+</div>
+
+
 
 # BiocParallel.FutureParam: Use Futures with BiocParallel
-
-![Life cycle: experimental](man/figures/lifecycle-experimental-orange.svg)
 
 ## Introduction
 The [future] package provides a generic API for using futures in R.
@@ -189,19 +197,8 @@ remotes::install_github("HenrikBengtsson/BiocParallel.FutureParam", ref="develop
 This will install the package from source.  
 
 
-<div id="badges"><!-- pkgdown markup -->
+<!-- pkgdown-drop-below -->
 
 ## Contributing
 
 To contribute to this package, please see [CONTRIBUTING.md](CONTRIBUTING.md).
-
-
-## Software status
-
-| Resource      | GitHub        | GitHub Actions      | Travis CI       | AppVeyor CI      |
-| ------------- | ------------------- | ------------------- | --------------- | ---------------- |
-| _Platforms:_  | _Multiple_          | _Multiple_          | _Linux & macOS_ | _Windows_        |
-| R CMD check   |  | <a href="https://github.com/HenrikBengtsson/BiocParallel.FutureParam/actions?query=workflow%3AR-CMD-check"><img src="https://github.com/HenrikBengtsson/BiocParallel.FutureParam/workflows/R-CMD-check/badge.svg?branch=develop" alt="Build status"></a>       | <a href="https://travis-ci.org/HenrikBengtsson/BiocParallel.FutureParam"><img src="https://travis-ci.org/HenrikBengtsson/BiocParallel.FutureParam.svg" alt="Build status"></a>   | <a href="https://ci.appveyor.com/project/HenrikBengtsson/biocparallel-futureparam"><img src="https://ci.appveyor.com/api/projects/status/github/HenrikBengtsson/BiocParallel.FutureParam?svg=true" alt="Build status"></a> |
-| Test coverage |                     |                     | <a href="https://codecov.io/gh/HenrikBengtsson/BiocParallel.FutureParam"><img src="https://codecov.io/gh/HenrikBengtsson/BiocParallel.FutureParam/branch/develop/graph/badge.svg" alt="Coverage Status"/></a>     |                  |
-
-</div>
