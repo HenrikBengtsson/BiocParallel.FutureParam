@@ -10,7 +10,6 @@
 </div>
 
 
-
 # BiocParallel.FutureParam: Use Futures with BiocParallel
 
 ## Introduction
