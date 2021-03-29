@@ -9,8 +9,7 @@
 <a href="https://lifecycle.r-lib.org/articles/stages.html"><img border="0" src="man/figures/lifecycle-experimental-orange.svg" alt="Life cycle: experimental"></a></a>
 </div>
 
-
-# BiocParallel.FutureParam: Use Futures with BiocParallel
+# BiocParallel.FutureParam: Use Futures with BiocParallel 
 
 ## Introduction
 The [future] package provides a generic API for using futures in R.
