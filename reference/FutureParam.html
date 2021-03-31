@@ -57,6 +57,16 @@
 <![endif]-->
 
 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SB3EQSD9FR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SB3EQSD9FR');
+</script>
+
 
 <!-- dependencies from examples -->
 
@@ -110,6 +120,12 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
+  <a href="https://www.futureverse.org/">
+    <span class="fas fa-fast-backward"></span>
+     
+  </a>
+</li>
+<li>
   <a href="https://github.com/HenrikBengtsson/BiocParallel.FutureParam/">
     <span class="fab fa-github fa-lg"></span>
      
@@ -165,13 +181,13 @@
 <span class='op'>}</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [[1]]
-#&gt; [1] 2.519257
+#&gt; [1] 1.614233
 #&gt; 
 #&gt; [[2]]
-#&gt; [1]  2.404727 -1.025910
+#&gt; [1] 4.1857592 0.4251212
 #&gt; 
 #&gt; [[3]]
-#&gt; [1] -2.381148  1.536329  2.514950
+#&gt; [1] 2.468453 1.489302 2.681516
 #&gt; </div><div class='input'>
 <span class='co'>## WORKAROUND: For some reason, 'R CMD check' on Windows will give an</span>
 <span class='co'>## error when running this example with plan(multisession), unless we</span>
