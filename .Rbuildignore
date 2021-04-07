@@ -12,6 +12,7 @@
 ^CONDUCT[.]md$
 ^CONTRIBUTING[.]md$
 ^docs
+^pkgdown
 
 #----------------------------
 # devtools
