@@ -37,6 +37,12 @@
 <script src="../pkgdown.js"></script>
 
 
+<!-- docsearch -->
+<script src="../docsearch.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.3/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link href="../docsearch.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+
 
 
 <meta property="og:title" content="BiocParallel.FutureParam: A BiocParallelParam class using Futures — BiocParallel.FutureParam" />
@@ -189,6 +195,12 @@ be used for asynchronous (parallel/distributed) or synchronous
 </li>
       </ul>
       
+      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+        <div class="form-group">
+          <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
+        </div>
+      </form>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -242,13 +254,13 @@ select the type of future you wish to use via
 <span class='op'>}</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [[1]]
-#&gt; [1] 2.402794
+#&gt; [1] -0.5808751
 #&gt; 
 #&gt; [[2]]
-#&gt; [1] 0.3070359 0.4527971
+#&gt; [1] 1.145147 1.377516
 #&gt; 
 #&gt; [[3]]
-#&gt; [1] -1.973392  2.367373  6.166132
+#&gt; [1]  1.0354871 -0.2138495  0.3183265
 #&gt; </div><div class='input'>
 <span class='co'>## WORKAROUND: For some reason, 'R CMD check' on Windows will give an</span>
 <span class='co'>## error when running this example with plan(multisession), unless we</span>
@@ -277,6 +289,24 @@ select the type of future you wish to use via
    </div>
 
   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.js" integrity="sha256-GKvGqXDznoRYHCwKXGnuchvKSwmx9SRMrZOTh2g4Sb0=" crossorigin="anonymous"></script>
+<script>
+  docsearch({
+    
+    
+    apiKey: 'aa6e02fc501886fb0f7c91ac4e300456',
+    indexName: 'futureverse',
+    algoliaOptions: { 'facetFilters': ['project:BiocParallel.FutureParam'] },
+    inputSelector: 'input#search-input.form-control',
+    transformData: function(hits) {
+      return hits.map(function (hit) {
+        hit.url = updateHitURL(hit);
+        return hit;
+      });
+    }
+  });
+</script>
+
 
 
   
