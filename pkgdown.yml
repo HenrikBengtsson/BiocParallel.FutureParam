@@ -3,7 +3,7 @@ pkgdown: 1.6.1.9001
 pkgdown_sha: c6bd498aa2e0ae2e15e267891aaa69c6c15ab79f
 articles:
   FutureParam: FutureParam.html
-last_built: 2021-04-07T18:34Z
+last_built: 2021-04-07T18:56Z
 urls:
   reference: https://BiocParallel.FutureParam.futureverse.org/reference
   article: https://BiocParallel.FutureParam.futureverse.org/articles

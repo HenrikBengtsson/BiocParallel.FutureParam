@@ -245,8 +245,8 @@ select the type of future you wish to use via
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://BiocParallel.FutureParam.futureverse.org'>"BiocParallel.FutureParam"</a></span><span class='op'>)</span>
 <span class='fu'>register</span><span class='op'>(</span><span class='fu'><a href='FutureParam.html'>FutureParam</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-<span class='fu'>plan</span><span class='op'>(</span><span class='va'>multiprocess</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: Strategy 'multiprocess' is deprecated in future (&gt;= 1.20.0). Instead, explicitly specify either 'multisession' or 'multicore'. In the current R session, 'multiprocess' equals 'multicore'.</span></div><div class='input'>
+<span class='fu'>plan</span><span class='op'>(</span><span class='va'>multisession</span><span class='op'>)</span>
+
 <span class='va'>mu</span> <span class='op'>&lt;-</span> <span class='fl'>1.0</span>
 <span class='va'>sigma</span> <span class='op'>&lt;-</span> <span class='fl'>2.0</span>
 <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>bplapply</span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>, mu <span class='op'>=</span> <span class='va'>mu</span>, sigma <span class='op'>=</span> <span class='va'>sigma</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>i</span>, <span class='va'>mu</span>, <span class='va'>sigma</span><span class='op'>)</span> <span class='op'>{</span>
@@ -254,13 +254,13 @@ select the type of future you wish to use via
 <span class='op'>}</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [[1]]
-#&gt; [1] 0.4273892
+#&gt; [1] 1.255395
 #&gt; 
 #&gt; [[2]]
-#&gt; [1] 0.6264093 1.9629896
+#&gt; [1] -1.6594118  0.6450291
 #&gt; 
 #&gt; [[3]]
-#&gt; [1]  4.7336547  0.7371722 -3.4300547
+#&gt; [1] -1.3270618 -0.6143819  1.8308809
 #&gt; </div><div class='input'>
 <span class='co'>## WORKAROUND: For some reason, 'R CMD check' on Windows will give an</span>
 <span class='co'>## error when running this example with plan(multisession), unless we</span>
