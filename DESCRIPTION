@@ -19,7 +19,7 @@ Authors@R: c(
 Description: A 'BiocParallelParam' class for using futures with the BiocParallel framework, e.g. BiocParallel::register(FutureParam()).
 License: LGPL (>= 2.1)
 LazyLoad: TRUE
-URL: https://github.com/HenrikBengtsson/BiocParallel.FutureParam
+URL: https://BiocParallel.FutureParam.futureverse.org, https://github.com/HenrikBengtsson/BiocParallel.FutureParam
 BugReports: https://github.com/HenrikBengtsson/BiocParallel.FutureParam/issues
 RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
