@@ -6,6 +6,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>A BiocParallelParam class using Futures • BiocParallel.FutureParam</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
@@ -27,8 +33,6 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
-    
-
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -48,7 +52,16 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
+  <a href="../index.html">
+    <span class="fas fa-home fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -62,13 +75,10 @@
     </li>
   </ul>
 </li>
-<li>
-  <a href="../news/index.html">Changelog</a>
-</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://www.futureverse.org/" class="external-link">
+  <a href="https://www.futureverse.org/">
     <span class="fas fa-fast-backward"></span>
      
   </a>
@@ -84,48 +94,51 @@
       <a href="https://BiocParallel.FutureParam.futureverse.org">BiocParallel.FutureParam</a>
     </li>
     <li>
-      <a href="https://doFuture.futureverse.org" class="external-link">doFuture</a>
+      <a href="https://doFuture.futureverse.org">doFuture</a>
     </li>
     <li>
-      <a href="https://furrr.futureverse.org" class="external-link">furrr</a>
+      <a href="https://furrr.futureverse.org">furrr</a>
     </li>
     <li>
-      <a href="https://future.futureverse.org" class="external-link">future</a>
+      <a href="https://future.futureverse.org">future</a>
     </li>
     <li>
-      <a href="https://future.apply.futureverse.org" class="external-link">future.apply</a>
+      <a href="https://future.apply.futureverse.org">future.apply</a>
     </li>
     <li>
-      <a href="https://future.batchtools.futureverse.org" class="external-link">future.batchtools</a>
+      <a href="https://future.batchtools.futureverse.org">future.batchtools</a>
     </li>
     <li>
-      <a href="https://future.callr.futureverse.org" class="external-link">future.callr</a>
+      <a href="https://future.callr.futureverse.org">future.callr</a>
     </li>
     <li>
-      <a href="https://future.tests.futureverse.org" class="external-link">future.tests</a>
+      <a href="https://future.tests.futureverse.org">future.tests</a>
     </li>
     <li>
-      <a href="https://globals.futureverse.org" class="external-link">globals</a>
+      <a href="https://globals.futureverse.org">globals</a>
     </li>
     <li>
-      <a href="https://listenv.futureverse.org" class="external-link">listenv</a>
+      <a href="https://listenv.futureverse.org">listenv</a>
     </li>
     <li>
-      <a href="https://parallelly.futureverse.org" class="external-link">parallelly</a>
+      <a href="https://marshal.futureverse.org">marshal</a>
     </li>
     <li>
-      <a href="https://progressr.futureverse.org" class="external-link">progressr</a>
+      <a href="https://parallelly.futureverse.org">parallelly</a>
+    </li>
+    <li>
+      <a href="https://progressr.futureverse.org">progressr</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="https://cloud.r-project.org/package=BiocParallel.FutureParam" class="external-link">
+  <a href="https://cloud.r-project.org/package=BiocParallel.FutureParam">
     <span class="fab fa-r-project"></span>
      
   </a>
 </li>
 <li>
-  <a href="https://github.com/HenrikBengtsson/BiocParallel.FutureParam/" class="external-link">
+  <a href="https://github.com/HenrikBengtsson/BiocParallel.FutureParam/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -150,10 +163,10 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>A BiocParallelParam class using Futures</h1>
-                        <h4 data-toc-skip class="author">Henrik Bengtsson</h4>
+                        <h4 class="author">Henrik Bengtsson</h4>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/HenrikBengtsson/BiocParallel.FutureParam/blob/master/vignettes/FutureParam.md.rsp" class="external-link"><code>vignettes/FutureParam.md.rsp</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/HenrikBengtsson/BiocParallel.FutureParam/blob/master/vignettes/FutureParam.md.rsp"><code>vignettes/FutureParam.md.rsp</code></a></small>
       <div class="hidden name"><code>FutureParam.md.rsp</code></div>
 
     </div>
@@ -163,25 +176,25 @@
 <div id="introduction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h2>
-<p>The <a href="https://cran.r-project.org/package=future" class="external-link">future</a> package provides a generic API for using futures in R. A future is a simple yet powerful mechanism to evaluate an R expression and retrieve its value at some point in time. Futures can be resolved in many different ways depending on which strategy is used. There are various types of synchronous and asynchronous futures to choose from in the <a href="https://cran.r-project.org/package=future" class="external-link">future</a> package. Additional futures are implemented in other packages. For instance, the <a href="https://cran.r-project.org/package=future.batchtools" class="external-link">future.batchtools</a> package provides futures for <em>any</em> type of backend that the <a href="https://cran.r-project.org/package=batchtools" class="external-link">batchtools</a> package supports. For an introduction to futures in R, please consult the vignettes of the <a href="https://cran.r-project.org/package=future" class="external-link">future</a> package.</p>
-<p>The <a href="https://github.com/HenrikBengtsson/BiocParallel.FutureParam" class="external-link">BiocParallel.FutureParam</a> package provides FutureParam, a BiocParallelParam class, for the <a href="https://bioconductor.org/packages/release/bioc/html/BiocParallel.html" class="external-link">BiocParallel</a> package that works with <em>any</em> type of future. The BiocParallel.FutureParam package is cross platform just as the future package.</p>
+<p>The <a href="https://cran.r-project.org/package=future">future</a> package provides a generic API for using futures in R. A future is a simple yet powerful mechanism to evaluate an R expression and retrieve its value at some point in time. Futures can be resolved in many different ways depending on which strategy is used. There are various types of synchronous and asynchronous futures to choose from in the <a href="https://cran.r-project.org/package=future">future</a> package. Additional futures are implemented in other packages. For instance, the <a href="https://cran.r-project.org/package=future.batchtools">future.batchtools</a> package provides futures for <em>any</em> type of backend that the <a href="https://cran.r-project.org/package=batchtools">batchtools</a> package supports. For an introduction to futures in R, please consult the vignettes of the <a href="https://cran.r-project.org/package=future">future</a> package.</p>
+<p>The <a href="https://github.com/HenrikBengtsson/BiocParallel.FutureParam">BiocParallel.FutureParam</a> package provides FutureParam, a BiocParallelParam class, for the <a href="https://bioconductor.org/packages/release/bioc/html/BiocParallel.html">BiocParallel</a> package that works with <em>any</em> type of future. The BiocParallel.FutureParam package is cross platform just as the future package.</p>
 <p>Below is an example showing how to use FutureParam with <em>multicore</em> futures. A multicore future will be evaluated in parallel using forked workers, which is not supported on MS Windows when it will fall back to sequential processing.</p>
 <div class="sourceCode"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://BiocParallel.FutureParam.futureverse.org">"BiocParallel.FutureParam"</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://BiocParallel.FutureParam.futureverse.org">"BiocParallel.FutureParam"</a></span><span class="op">)</span>
 <span class="fu">register</span><span class="op">(</span><span class="fu"><a href="../reference/FutureParam.html">FutureParam</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 <span class="fu">plan</span><span class="op">(</span><span class="va">multicore</span><span class="op">)</span>
 
 <span class="va">mu</span> <span class="op">&lt;-</span> <span class="fl">1.0</span>
 <span class="va">sigma</span> <span class="op">&lt;-</span> <span class="fl">2.0</span>
 <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">bplapply</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, mu <span class="op">=</span> <span class="va">mu</span>, sigma <span class="op">=</span> <span class="va">sigma</span>, <span class="kw">function</span><span class="op">(</span><span class="va">i</span>, <span class="va">mu</span>, <span class="va">sigma</span><span class="op">)</span> <span class="op">{</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">i</span>, mean <span class="op">=</span> <span class="va">mu</span>, sd <span class="op">=</span> <span class="va">sigma</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">i</span>, mean <span class="op">=</span> <span class="va">mu</span>, sd <span class="op">=</span> <span class="va">sigma</span><span class="op">)</span>
 <span class="op">}</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="futureparam-replaces-existing-biocparallelparam-classes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#futureparam-replaces-existing-biocparallelparam-classes" class="anchor"></a>FutureParam replaces existing BiocParallelParam classes</h2>
-<p>Due to the generic nature of futures, the FutureParam class provides the same functionality as many of the existing BiocParallelParam classes, e.g. SerialParam, SnowParam, MulticoreParam, BatchtoolsParam and DoParParam. In addition, it provides supports for additional backends that are not yet implemented in <a href="https://bioconductor.org/packages/release/bioc/html/BiocParallel.html" class="external-link">BiocParallel</a>, e.g. <a href="https://cran.r-project.org/package=callr" class="external-link">callr</a> and <a href="https://cran.r-project.org/package=batchtools" class="external-link">batchtools</a>.</p>
-<table style="width: 100%;" class="table">
+<p>Due to the generic nature of futures, the FutureParam class provides the same functionality as many of the existing BiocParallelParam classes, e.g. SerialParam, SnowParam, MulticoreParam, BatchtoolsParam and DoParParam. In addition, it provides supports for additional backends that are not yet implemented in <a href="https://bioconductor.org/packages/release/bioc/html/BiocParallel.html">BiocParallel</a>, e.g. <a href="https://cran.r-project.org/package=callr">callr</a> and <a href="https://cran.r-project.org/package=batchtools">batchtools</a>.</p>
+<table class="table">
 <tr>
 <th>
 BiocParallel usage
@@ -192,7 +205,7 @@ BiocParallel.FutureParam alternative
 </tr>
 <tr style="vertical-align: center;">
 <td>
-<pre><code class="r"><a href="https://github.com/Bioconductor/BiocParallel" class="external-link">library("BiocParallel")
+<pre><code class="r"><a href="https://github.com/Bioconductor/BiocParallel">library("BiocParallel")
 register(SerialParam())
 
 </a></code></pre>
@@ -206,7 +219,7 @@ plan(sequential)
 </tr>
 <tr style="vertical-align: center;">
 <td>
-<pre><code class="r"><a href="https://github.com/Bioconductor/BiocParallel" class="external-link">library("BiocParallel")
+<pre><code class="r"><a href="https://github.com/Bioconductor/BiocParallel">library("BiocParallel")
 register(MulticoreParam())
 
 </a></code></pre>
@@ -220,7 +233,7 @@ plan(multicore)
 </tr>
 <tr style="vertical-align: center;">
 <td>
-<pre><code class="r"><a href="https://github.com/Bioconductor/BiocParallel" class="external-link">library("BiocParallel")
+<pre><code class="r"><a href="https://github.com/Bioconductor/BiocParallel">library("BiocParallel")
 register(SnowParam(2, type = "SOCK"))
 
 </a></code></pre>
@@ -234,7 +247,7 @@ plan(multisession, workers = 2)
 </tr>
 <tr style="vertical-align: center;">
 <td>
-<pre><code class="r"><a href="https://github.com/Bioconductor/BiocParallel" class="external-link">library("BiocParallel")
+<pre><code class="r"><a href="https://github.com/Bioconductor/BiocParallel">library("BiocParallel")
 cl </a></code></pre>
 </td>
 <td>
@@ -245,7 +258,7 @@ cl </a></code></pre>
 </tr>
 <tr style="vertical-align: center;">
 <td>
-<pre><code class="r"><a href="https://github.com/Bioconductor/BiocParallel" class="external-link">library("BiocParallel")
+<pre><code class="r"><a href="https://github.com/Bioconductor/BiocParallel">library("BiocParallel")
 register(SnowParam(4, type = "MPI"))
 
 
@@ -259,7 +272,7 @@ cl </a></code></pre>
 </tr>
 <tr style="vertical-align: center;">
 <td>
-<pre><code class="r"><a href="https://github.com/Bioconductor/BiocParallel" class="external-link">library("BiocParallel")
+<pre><code class="r"><a href="https://github.com/Bioconductor/BiocParallel">library("BiocParallel")
 register(BatchtoolsParam(cluster="sge",
                          template="~/sge.tmpl"))
 </a></code></pre>
@@ -286,7 +299,7 @@ plan(future.callr::callr)
 <table class="table">
 <div id="future-callr-httpscran-r-project-orgpackagefuture-callr" class="section level2">
 <h2 class="hasAnchor">
-<a href="#future-callr-httpscran-r-project-orgpackagefuture-callr" class="anchor"></a>[future.callr]: <a href="https://cran.r-project.org/package=future.callr" class="external-link uri">https://cran.r-project.org/package=future.callr</a>
+<a href="#future-callr-httpscran-r-project-orgpackagefuture-callr" class="anchor"></a>[future.callr]: <a href="https://cran.r-project.org/package=future.callr" class="uri">https://cran.r-project.org/package=future.callr</a>
 </h2>
 <p>Copyright Henrik Bengtsson, 2016-2021</p>
 </div>
@@ -303,13 +316,11 @@ plan(future.callr::callr)
 
 
       <footer><div class="copyright">
-  <p></p>
-<p>Developed by Henrik Bengtsson.</p>
+  <p>Developed by Henrik Bengtsson.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.6.1.9001 and <a href="https://github.com/HenrikBengtsson/pkgdown.extras/">pkgdown.extras</a> 0.0.0.9001.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1 and <a href="https://github.com/HenrikBengtsson/pkgdown.extras/">pkgdown.extras</a> 0.0.0.9002.</p>
 </div>
 
       </footer><script src="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.js" integrity="sha256-GKvGqXDznoRYHCwKXGnuchvKSwmx9SRMrZOTh2g4Sb0=" crossorigin="anonymous"></script><script>
