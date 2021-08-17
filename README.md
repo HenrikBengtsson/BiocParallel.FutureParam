@@ -103,7 +103,7 @@ plan(multisession, workers = 2)
 <tr style="vertical-align: center;">
 <td>
 <pre><code class="r">library("BiocParallel")
-cl <- parallel::makeCluster(2, type = "SOCK")
+cl &lt;- parallel::makeCluster(2, type = "SOCK")
 register(as(cl, "SnowParam"))
 
 </code></pre>
@@ -111,7 +111,7 @@ register(as(cl, "SnowParam"))
 <td>
 <pre><code class="r">library("BiocParallel.FutureParam")
 register(FutureParam())
-cl <- parallel::makeCluster(2, type = "SOCK")
+cl &lt;- parallel::makeCluster(2, type = "SOCK")
 plan(cluster, workers = cl)
 </code></pre>
 </td>
@@ -129,7 +129,7 @@ register(SnowParam(4, type = "MPI"))
 <td>
 <pre><code class="r">library("BiocParallel.FutureParam")
 register(FutureParam())
-cl <- parallel::makeCluster(4, type = "MPI")
+cl &lt;- parallel::makeCluster(4, type = "MPI")
 plan(cluster, workers = cl)
 </code></pre>
 </td>
@@ -164,7 +164,7 @@ plan(future.callr::callr)
 </td>
 </tr>
 
-<table>
+</table>
 
 
 ## Something not working?
