@@ -61,7 +61,7 @@ x <- bplapply(1:3, mu = mu, sigma = sigma, function(i, mu, sigma) {
 Due to the generic nature of futures, the FutureParam class
 provides the same functionality as many of the existing
 BiocParallelParam classes, e.g. SerialParam, SnowParam,
-MulticoreParam, BatchtoolsParam and DoParParam.  In addition,
+MulticoreParam, BatchtoolsParam and DoparParam.  In addition,
 it provides supports for additional backends that are not yet
 implemented in [BiocParallel], e.g. [callr] and [batchtools].
 
