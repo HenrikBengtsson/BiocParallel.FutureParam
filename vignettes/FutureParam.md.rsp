@@ -22,6 +22,7 @@ options(mc.cores = 2L)
 # A BiocParallelParam class using Futures
 
 ## Introduction
+
 The [future] package provides a generic API for using futures in R.
 A future is a simple yet powerful mechanism to evaluate an R expression
 and retrieve its value at some point in time.  Futures can be resolved
@@ -181,11 +182,33 @@ plan(future.callr::callr)
 <table>
 
 
+## Something not working?
+
+Please note that this package, **BiocParallel.FutureParam**, is in an experimental stage and does not get as much real-world use as other **BiocParallel** backends.  Thus, if you run into a problem when using this package, it could very well be a bug.  However, before you report the problem, please try with the **[doFuture]**, `registerDoFuture()`, and the `DoparParam()` backend of **BiocParallel**, e.g.
+
+```r
+library("BiocParallel")
+library("doFuture")
+register(DoparParam()) ## Tell BiocParallel to use a foreach backend
+registerDoFuture()     ## Tell foreach to use a future backend
+plan(multicore)        ## Tell future to use the multicore backend
+
+mu <- 1.0
+sigma <- 2.0
+x <- bplapply(1:3, mu = mu, sigma = sigma, function(i, mu, sigma) {
+  rnorm(i, mean = mu, sd = sigma)
+})
+```
+
+If that works, but not with `register(FutureParam())`, then it's a bug in the **BiocParallel.FutureParam** package.  Please report this at <https://github.com/HenrikBengtsson/BiocParallel.FutureParam/issues>.
+
+
 [batchtools]: https://cran.r-project.org/package=batchtools
 [callr]: https://cran.r-project.org/package=callr
 [BiocParallel]: https://bioconductor.org/packages/release/bioc/html/BiocParallel.html
 [BiocParallel.FutureParam]: https://github.com/HenrikBengtsson/BiocParallel.FutureParam
 [future]: https://cran.r-project.org/package=future
+[doFuture]: https://cran.r-project.org/package=doFuture
 [future.batchtools]: https://cran.r-project.org/package=future.batchtools
 [future.callr]: https://cran.r-project.org/package=future.callr
 ---
