@@ -189,7 +189,7 @@
 <div id="futureparam-replaces-existing-biocparallelparam-classes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#futureparam-replaces-existing-biocparallelparam-classes" class="anchor"></a>FutureParam replaces existing BiocParallelParam classes</h2>
-<p>Due to the generic nature of futures, the FutureParam class provides the same functionality as many of the existing BiocParallelParam classes, e.g. SerialParam, SnowParam, MulticoreParam, BatchtoolsParam and DoParParam. In addition, it provides supports for additional backends that are not yet implemented in <a href="https://bioconductor.org/packages/release/bioc/html/BiocParallel.html">BiocParallel</a>, e.g. <a href="https://cran.r-project.org/package=callr">callr</a> and <a href="https://cran.r-project.org/package=batchtools">batchtools</a>.</p>
+<p>Due to the generic nature of futures, the FutureParam class provides the same functionality as many of the existing BiocParallelParam classes, e.g. SerialParam, SnowParam, MulticoreParam, BatchtoolsParam and DoparParam. In addition, it provides supports for additional backends that are not yet implemented in <a href="https://bioconductor.org/packages/release/bioc/html/BiocParallel.html">BiocParallel</a>, e.g. <a href="https://cran.r-project.org/package=callr">callr</a> and <a href="https://cran.r-project.org/package=batchtools">batchtools</a>.</p>
 <table class="table">
 <tr>
 <th>BiocParallel usage</th>
@@ -240,12 +240,17 @@ plan(multisession, workers = 2)
 <tr style="vertical-align: center;">
 <td>
 <pre><code class="r"><a href="https://github.com/Bioconductor/BiocParallel">library("BiocParallel")
-cl </a></code></pre>
+cl &lt;- parallel::makeCluster(2, type = "SOCK")
+register(as(cl, "SnowParam"))
+
+</a></code></pre>
 </td>
 <td>
 <pre><code class="r"><a href="https://BiocParallel.FutureParam.futureverse.org">library("BiocParallel.FutureParam")
 register(FutureParam())
-cl </a></code></pre>
+cl &lt;- parallel::makeCluster(2, type = "SOCK")
+plan(cluster, workers = cl)
+</a></code></pre>
 </td>
 </tr>
 <tr style="vertical-align: center;">
@@ -259,7 +264,9 @@ register(SnowParam(4, type = "MPI"))
 <td>
 <pre><code class="r"><a href="https://BiocParallel.FutureParam.futureverse.org">library("BiocParallel.FutureParam")
 register(FutureParam())
-cl </a></code></pre>
+cl &lt;- parallel::makeCluster(4, type = "MPI")
+plan(cluster, workers = cl)
+</a></code></pre>
 </td>
 </tr>
 <tr style="vertical-align: center;">
@@ -288,7 +295,8 @@ plan(future.callr::callr)
 </a></code></pre>
 </td>
 </tr>
-<table class="table">
+</table>
+</div>
 <div id="something-not-working" class="section level2">
 <h2 class="hasAnchor">
 <a href="#something-not-working" class="anchor"></a>Something not working?</h2>
@@ -321,9 +329,6 @@ plan(future.callr::callr)
 <code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"HenrikBengtsson/BiocParallel.FutureParam"</span>, ref<span class="op">=</span><span class="st">"develop"</span><span class="op">)</span></code></pre></div>
 <p>This will install the package from source.</p>
 </div>
-</div>
-</table>
-</table>
 </div>
 </div>
 

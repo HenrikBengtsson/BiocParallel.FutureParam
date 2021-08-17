@@ -229,11 +229,6 @@
 <a href="#drop-the-header" class="anchor"></a>Drop the header</h2>
 <p>md &lt;- unlist(strsplit(md, split=“\n”, fixed=TRUE)) md &lt;- md[-seq_len(grep(“^##”, md)[1]-1)]</p>
 </div>
-<div id="drop-the-footer" class="section level2">
-<h2 class="hasAnchor">
-<a href="#drop-the-footer" class="anchor"></a>Drop the footer</h2>
-<p>md &lt;- md[seq_len(grep(“^—”, md)[1]-1)]</p>
-</div>
 <div id="output" class="section level2">
 <h2 class="hasAnchor">
 <a href="#output" class="anchor"></a>Output</h2>
