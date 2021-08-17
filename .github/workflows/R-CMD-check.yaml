@@ -76,7 +76,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          remotes::install_cran(c("rcmdcheck", "BiocManager"))
+          install.packages(c("rcmdcheck", "BiocManager"))
           BiocManager::install("BiocParallel")
           remotes::install_deps(dependencies = TRUE)
           install.packages(".", repos=NULL, type="source")  ## needed by parallel workers
