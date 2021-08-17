@@ -289,6 +289,24 @@ plan(future.callr::callr)
 </td>
 </tr>
 <table class="table">
+<div id="something-not-working" class="section level2">
+<h2 class="hasAnchor">
+<a href="#something-not-working" class="anchor"></a>Something not working?</h2>
+<p>Please note that this package, <strong>BiocParallel.FutureParam</strong>, is in an experimental stage and does not get as much real-world use as other <strong>BiocParallel</strong> backends. Thus, if you run into a problem when using this package, it could very well be a bug. However, before you report the problem, please try with the <strong><a href="https://cran.r-project.org/package=doFuture">doFuture</a></strong>, <code><a href="https://doFuture.futureverse.org/reference/registerDoFuture.html">registerDoFuture()</a></code>, and the <code><a href="https://rdrr.io/pkg/BiocParallel/man/DoparParam-class.html">DoparParam()</a></code> backend of <strong>BiocParallel</strong>, e.g.</p>
+<div class="sourceCode"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/Bioconductor/BiocParallel">"BiocParallel"</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://doFuture.futureverse.org">"doFuture"</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/BiocParallel/man/register.html">register</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocParallel/man/DoparParam-class.html">DoparParam</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="co">## Tell BiocParallel to use a foreach backend</span>
+<span class="fu"><a href="https://doFuture.futureverse.org/reference/registerDoFuture.html">registerDoFuture</a></span><span class="op">(</span><span class="op">)</span>     <span class="co">## Tell foreach to use a future backend</span>
+<span class="fu">plan</span><span class="op">(</span><span class="va">multicore</span><span class="op">)</span>        <span class="co">## Tell future to use the multicore backend</span>
+
+<span class="va">mu</span> <span class="op">&lt;-</span> <span class="fl">1.0</span>
+<span class="va">sigma</span> <span class="op">&lt;-</span> <span class="fl">2.0</span>
+<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocParallel/man/bplapply.html">bplapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, mu <span class="op">=</span> <span class="va">mu</span>, sigma <span class="op">=</span> <span class="va">sigma</span>, <span class="kw">function</span><span class="op">(</span><span class="va">i</span>, <span class="va">mu</span>, <span class="va">sigma</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">i</span>, mean <span class="op">=</span> <span class="va">mu</span>, sd <span class="op">=</span> <span class="va">sigma</span><span class="op">)</span>
+<span class="op">}</span><span class="op">)</span></code></pre></div>
+<p>If that works, but not with <code><a href="https://rdrr.io/pkg/BiocParallel/man/register.html">register(FutureParam())</a></code>, then it’s a bug in the <strong>BiocParallel.FutureParam</strong> package. Please report this at <a href="https://github.com/HenrikBengtsson/BiocParallel.FutureParam/issues" class="uri">https://github.com/HenrikBengtsson/BiocParallel.FutureParam/issues</a>.</p>
+</div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
@@ -351,7 +369,6 @@ plan(future.callr::callr)
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://github.com/HenrikBengtsson/BiocParallel.FutureParam/actions?query=workflow%3AR-CMD-check"><img border="0" src="https://github.com/HenrikBengtsson/BiocParallel.FutureParam/workflows/R-CMD-check/badge.svg?branch=develop" alt="Build status"></a></li>
-<li><a href="https://travis-ci.org/HenrikBengtsson/BiocParallel.FutureParam"><img border="0" src="https://travis-ci.org/HenrikBengtsson/BiocParallel.FutureParam.svg" alt="Build status"></a></li>
 <li><a href="https://ci.appveyor.com/project/HenrikBengtsson/biocparallel-futureparam"><img border="0" src="https://ci.appveyor.com/api/projects/status/github/HenrikBengtsson/BiocParallel.FutureParam?svg=true" alt="Build status"></a></li>
 <li><a href="https://codecov.io/gh/HenrikBengtsson/BiocParallel.FutureParam"><img border="0" src="https://codecov.io/gh/HenrikBengtsson/BiocParallel.FutureParam/branch/develop/graph/badge.svg" alt="Coverage Status"></a></li>
 <li><a href="https://lifecycle.r-lib.org/articles/stages.html"><img border="0" src="reference/figures/lifecycle-experimental-orange.svg" alt="Life cycle: experimental"></a></li>

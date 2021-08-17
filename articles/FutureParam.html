@@ -184,12 +184,12 @@
 <p>Below is an example showing how to use FutureParam with <em>multicore</em> futures. A multicore future will be evaluated in parallel using forked workers, which is not supported on MS Windows when it will fall back to sequential processing.</p>
 <div class="sourceCode"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://BiocParallel.FutureParam.futureverse.org">"BiocParallel.FutureParam"</a></span><span class="op">)</span>
-<span class="fu">register</span><span class="op">(</span><span class="fu"><a href="../reference/FutureParam.html">FutureParam</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/BiocParallel/man/register.html">register</a></span><span class="op">(</span><span class="fu"><a href="../reference/FutureParam.html">FutureParam</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 <span class="fu">plan</span><span class="op">(</span><span class="va">multicore</span><span class="op">)</span>
 
 <span class="va">mu</span> <span class="op">&lt;-</span> <span class="fl">1.0</span>
 <span class="va">sigma</span> <span class="op">&lt;-</span> <span class="fl">2.0</span>
-<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">bplapply</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, mu <span class="op">=</span> <span class="va">mu</span>, sigma <span class="op">=</span> <span class="va">sigma</span>, <span class="kw">function</span><span class="op">(</span><span class="va">i</span>, <span class="va">mu</span>, <span class="va">sigma</span><span class="op">)</span> <span class="op">{</span>
+<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocParallel/man/bplapply.html">bplapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, mu <span class="op">=</span> <span class="va">mu</span>, sigma <span class="op">=</span> <span class="va">sigma</span>, <span class="kw">function</span><span class="op">(</span><span class="va">i</span>, <span class="va">mu</span>, <span class="va">sigma</span><span class="op">)</span> <span class="op">{</span>
   <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">i</span>, mean <span class="op">=</span> <span class="va">mu</span>, sd <span class="op">=</span> <span class="va">sigma</span><span class="op">)</span>
 <span class="op">}</span><span class="op">)</span></code></pre></div>
 </div>
@@ -299,14 +299,27 @@ plan(future.callr::callr)
 </a></code></pre>
 </td>
 </tr>
-<table class="table">
-<div id="future-callr-httpscran-r-project-orgpackagefuture-callr" class="section level2">
-<h2 class="hasAnchor">
-<a href="#future-callr-httpscran-r-project-orgpackagefuture-callr" class="anchor"></a>[future.callr]: <a href="https://cran.r-project.org/package=future.callr" class="uri">https://cran.r-project.org/package=future.callr</a>
-</h2>
-<p>Copyright Henrik Bengtsson, 2016-2021</p>
+</table>
 </div>
-  
+<div id="something-not-working" class="section level2">
+<h2 class="hasAnchor">
+<a href="#something-not-working" class="anchor"></a>Something not working?</h2>
+<p>Please note that this package, <strong>BiocParallel.FutureParam</strong>, is in an experimental stage and does not get as much real-world use as other <strong>BiocParallel</strong> backends. Thus, if you run into a problem when using this package, it could very well be a bug. However, before you report the problem, please try with the <strong><a href="https://cran.r-project.org/package=doFuture">doFuture</a></strong>, <code><a href="https://doFuture.futureverse.org/reference/registerDoFuture.html">registerDoFuture()</a></code>, and the <code><a href="https://rdrr.io/pkg/BiocParallel/man/DoparParam-class.html">DoparParam()</a></code> backend of <strong>BiocParallel</strong>, e.g.</p>
+<div class="sourceCode"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/Bioconductor/BiocParallel">"BiocParallel"</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://doFuture.futureverse.org">"doFuture"</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/BiocParallel/man/register.html">register</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocParallel/man/DoparParam-class.html">DoparParam</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="co">## Tell BiocParallel to use a foreach backend</span>
+<span class="fu"><a href="https://doFuture.futureverse.org/reference/registerDoFuture.html">registerDoFuture</a></span><span class="op">(</span><span class="op">)</span>     <span class="co">## Tell foreach to use a future backend</span>
+<span class="fu">plan</span><span class="op">(</span><span class="va">multicore</span><span class="op">)</span>        <span class="co">## Tell future to use the multicore backend</span>
+
+<span class="va">mu</span> <span class="op">&lt;-</span> <span class="fl">1.0</span>
+<span class="va">sigma</span> <span class="op">&lt;-</span> <span class="fl">2.0</span>
+<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocParallel/man/bplapply.html">bplapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, mu <span class="op">=</span> <span class="va">mu</span>, sigma <span class="op">=</span> <span class="va">sigma</span>, <span class="kw">function</span><span class="op">(</span><span class="va">i</span>, <span class="va">mu</span>, <span class="va">sigma</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">i</span>, mean <span class="op">=</span> <span class="va">mu</span>, sd <span class="op">=</span> <span class="va">sigma</span><span class="op">)</span>
+<span class="op">}</span><span class="op">)</span></code></pre></div>
+<p>If that works, but not with <code><a href="https://rdrr.io/pkg/BiocParallel/man/register.html">register(FutureParam())</a></code>, then it's a bug in the <strong>BiocParallel.FutureParam</strong> package. Please report this at <a href="https://github.com/HenrikBengtsson/BiocParallel.FutureParam/issues" class="uri">https://github.com/HenrikBengtsson/BiocParallel.FutureParam/issues</a>.</p>
+</div>
+  </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
@@ -314,7 +327,7 @@ plan(future.callr::callr)
     </nav>
 </div>
 
-
+</div>
 
 
 
@@ -326,7 +339,11 @@ plan(future.callr::callr)
   <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1 and <a href="https://github.com/HenrikBengtsson/pkgdown.extras/">pkgdown.extras</a> 0.0.0.9002.</p>
 </div>
 
-      </footer><script src="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.js" integrity="sha256-GKvGqXDznoRYHCwKXGnuchvKSwmx9SRMrZOTh2g4Sb0=" crossorigin="anonymous"></script><script>
+      </footer>
+</div>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.js" integrity="sha256-GKvGqXDznoRYHCwKXGnuchvKSwmx9SRMrZOTh2g4Sb0=" crossorigin="anonymous"></script><script>
   docsearch({
     
     
@@ -342,11 +359,5 @@ plan(future.callr::callr)
     }
   });
 </script>
-</table>
-</table>
-</div>
-</div>
-</div>
-</div>
 </body>
 </html>
