@@ -173,9 +173,9 @@ setMethod("bplapply", c("ANY", "FutureParam"), function(X, FUN, ..., BPREDO=list
 
 
 #' @importFrom methods setMethod
-#' @importFrom BiocParallel bploop bplog bptimeout bpstopOnError
+#' @importFrom BiocParallel bploop bplog bptimeout bpstopOnError bpoptions
 #' @importFrom future future resolve value
-setMethod("bpiterate", c("ANY", "ANY", "FutureParam"), function(ITER, FUN, ..., REDUCE, init, reduce.in.order=FALSE, BPPARAM=bpparam()) {
+setMethod("bpiterate", c("ANY", "ANY", "FutureParam"), function(ITER, FUN, ..., REDUCE, init, reduce.in.order=FALSE, BPREDO = list(),BPPARAM=bpparam(),BPOPTIONS = bpoptions()) {
   .composeTry <- importBP(".composeTry")
 
   ITER <- match.fun(ITER)
