@@ -8,7 +8,9 @@ Imports:
     methods
 Suggests:
     markdown,
-    R.rsp
+    R.rsp,
+    future.batchtools
+Remotes:
 VignetteBuilder:
     R.rsp
 Title: Use Futures with BiocParallel
@@ -21,5 +23,5 @@ License: LGPL (>= 2.1)
 LazyLoad: TRUE
 URL: https://BiocParallel.FutureParam.futureverse.org, https://github.com/HenrikBengtsson/BiocParallel.FutureParam
 BugReports: https://github.com/HenrikBengtsson/BiocParallel.FutureParam/issues
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Roxygen: list(markdown = TRUE)
