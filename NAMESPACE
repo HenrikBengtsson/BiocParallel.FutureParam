@@ -6,6 +6,7 @@ if (getRversion() >= "3.6.0") {
   importFrom(BiocParallel,.BiocParallelParam_prototype)
 }
 export(FutureParam)
+importFrom(BiocParallel,bpexportglobals)
 importFrom(BiocParallel,bplog)
 importFrom(BiocParallel,bplogdir)
 importFrom(BiocParallel,bploop)
