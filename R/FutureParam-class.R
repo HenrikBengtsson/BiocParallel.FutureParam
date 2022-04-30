@@ -199,7 +199,14 @@ setMethod("bpiterate", c("ANY", "ANY", "FutureParam"), function(ITER, FUN, ..., 
     }
   }
 
-  FUN <- .composeTry(FUN, bpstopOnError(BPPARAM),bpRNGseed(BPPARAM))
+  OPTIONS <- .workerOptions(
+    log = bplog(BPPARAM),
+    stop.on.error = bpstopOnError(BPPARAM),
+    timeout = bptimeout(BPPARAM),
+    exportglobals = bpexportglobals(BPPARAM)
+  )
+  
+  FUN <- .composeTry(FUN, OPTIONS, bpRNGseed(BPPARAM))
   ARGFUN <- function(value) c(list(value), list(...))
 
 
