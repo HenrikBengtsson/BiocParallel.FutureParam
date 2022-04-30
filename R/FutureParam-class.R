@@ -121,10 +121,11 @@ setReplaceMethod("bplogdir", c("FutureParam", "character"), function(x, value) {
 ###
 
 #' @importFrom methods setMethod
-#' @importFrom BiocParallel bplog bpok bpparam bpstopOnError bpthreshold bptimeout
+#' @importFrom BiocParallel bplog bpok bpparam bpstopOnError bpthreshold bptimeout  bpexportglobals
 #' @importFrom future future resolve value
 setMethod("bplapply", c("ANY", "FutureParam"), function(X, FUN, ..., BPREDO=list(), BPPARAM=bpparam()) {
   .composeTry <- importBP(".composeTry")
+  .workerOptions <- importBP('.workerOptions')
   .error_bplist <- importBP(".error_bplist")
   .log_load <- importBP(".log_load")
   .redo_index <- importBP(".redo_index")
@@ -140,9 +141,14 @@ setMethod("bplapply", c("ANY", "FutureParam"), function(X, FUN, ..., BPREDO=list
 
   .log_load(bplog(BPPARAM), bpthreshold(BPPARAM))
 
-  FUN <- .composeTry(FUN, bplog(BPPARAM), bpstopOnError(BPPARAM),
-                     stop.immediate=bpstopOnError(BPPARAM),
-                     timeout=bptimeout(BPPARAM))
+  OPTIONS <- .workerOptions(
+    log = bplog(BPPARAM),
+    stop.on.error = bpstopOnError(BPPARAM),
+    timeout = bptimeout(BPPARAM),
+    exportglobals = bpexportglobals(BPPARAM)
+  )
+  
+  FUN <- .composeTry(FUN, OPTIONS, bpRNGseed(BPPARAM))
 
   ## Create futures
   fs <- list()
@@ -177,7 +183,8 @@ setMethod("bplapply", c("ANY", "FutureParam"), function(X, FUN, ..., BPREDO=list
 #' @importFrom future future resolve value
 setMethod("bpiterate", c("ANY", "ANY", "FutureParam"), function(ITER, FUN, ..., REDUCE, init, reduce.in.order=FALSE, BPREDO = list(),BPPARAM=bpparam(),BPOPTIONS = bpoptions()) {
   .composeTry <- importBP(".composeTry")
-
+  .workerOptions <- importBP(".workerOptions")
+  
   ITER <- match.fun(ITER)
   FUN <- match.fun(FUN)
   hasREDUCE <- !missing(REDUCE)
@@ -192,8 +199,7 @@ setMethod("bpiterate", c("ANY", "ANY", "FutureParam"), function(ITER, FUN, ..., 
     }
   }
 
-  FUN <- .composeTry(FUN, bplog(BPPARAM), bpstopOnError(BPPARAM),
-                     timeout=bptimeout(BPPARAM))
+  FUN <- .composeTry(FUN, bpstopOnError(BPPARAM),bpRNGseed(BPPARAM))
   ARGFUN <- function(value) c(list(value), list(...))
 
 
