@@ -10,3 +10,5 @@
 .make/*.md.rsp
 docs/
 .Rdump
+.Rproj.user
+BiocParallel.FutureParam.Rproj

@@ -6,10 +6,13 @@ if (getRversion() >= "3.6.0") {
   importFrom(BiocParallel,.BiocParallelParam_prototype)
 }
 export(FutureParam)
+importFrom(BiocParallel,bpRNGseed)
+importFrom(BiocParallel,bpexportglobals)
 importFrom(BiocParallel,bplog)
 importFrom(BiocParallel,bplogdir)
 importFrom(BiocParallel,bploop)
 importFrom(BiocParallel,bpok)
+importFrom(BiocParallel,bpoptions)
 importFrom(BiocParallel,bpparam)
 importFrom(BiocParallel,bpstopOnError)
 importFrom(BiocParallel,bpthreshold)
